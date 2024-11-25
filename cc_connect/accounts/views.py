@@ -12,7 +12,7 @@ def signin(request):
 
         try:
             user = User.objects.get(username=username, password=password)
-            return render(request, 'accounts/success.html', {'user': user})
+            return render(request, 'accounts/account_home.html', {'user': user})
         except User.DoesNotExist:
             messages.error(request, 'Invalid credentials')
             return redirect('signin')
