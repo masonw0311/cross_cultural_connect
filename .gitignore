@@ -1,0 +1,30 @@
+# Virtual environment
+env/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# # Django stuff
+# *.sqlite3
+# db.sqlite3
+
+# VS Code settings
+.vscode/
+
+# Python dependencies
+*.egg-info/
+.Python
+pip-log.txt
+
+# Migrations
+migrations/
+
+# Static files
+/static/
+
+# Media files
+/media/
+
+# Secrets
+.env
