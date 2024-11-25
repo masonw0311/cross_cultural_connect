@@ -1,0 +1,165 @@
+/* General Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f9f9f9;
+}
+
+/* Container */
+.login-container {
+    display: flex;
+    width: 60%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Login Form Section */
+.login-form {
+    flex: 1;
+    padding: 40px;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-form h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.login-form label {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.login-form .actions {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form button {
+    padding: 10px;
+    background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9);
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 15px;
+    transition: background 0.3s;
+}
+
+.login-form button:hover {
+    background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
+}
+
+.login-form .extras {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: #888;
+}
+
+.login-form .extras a {
+    color: #f64f59;
+    text-decoration: none;
+}
+
+.login-form .extras a:hover {
+    text-decoration: underline;
+}
+
+/* Welcome Section */
+.login-welcome {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9);
+    color: white;
+    text-align: center;
+}
+
+.login-welcome h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.login-welcome p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.login-welcome .sign-up-btn {
+    padding: 10px 20px;
+    background-color: white;
+    color: #f64f59;
+    font-size: 16px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s, color 0.3s;
+}
+
+.login-welcome .sign-up-btn:hover {
+    background-color: #f64f59;
+    color: white;
+}
+
+/* Center the logo and text */
+.logo-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logo-section img {
+    width: 100px; /* Adjust size as needed */
+    margin-bottom: 10px;
+}
+
+.logo-section h1 {
+    font-size: 24px;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+/* Flag Selector Styling */
+.flag-selector select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.flag-selector select option {
+    padding: 10px;
+    font-size: 14px;
+}

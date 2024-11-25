@@ -1,8 +1,51 @@
-<h1>Create Account</h1>
-<form method="post">
-    {% csrf_token %}
-    <input type="text" name="username" placeholder="Username" required>
-    <input type="password" name="password" placeholder="Password" required>
-    <input type="text" name="country" placeholder="Country of Origin" required>
-    <button type="submit">Create Account</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="login-container">
+        <!-- Form Section -->
+        <div class="login-form">
+            <h2>Create Account</h2>
+            <form method="POST" action="{% url 'create_account' %}">
+                {% csrf_token %}
+                
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Username" required>
+                
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Password" required>
+                
+                <label for="country">Country</label>
+                <div class="flag-selector">
+                    <select id="country" name="country" required>
+                        <option value="">Select your country</option>
+                        <option value="Mexico" data-icon="{% static 'images/mexico-flag.png' %}">🇲🇽 Mexico</option>
+                        <option value="Brazil" data-icon="{% static 'images/brazil-flag.png' %}">🇧🇷 Brazil</option>
+                        <option value="United States" data-icon="{% static 'images/us-flag.png' %}">🇺🇸 United States</option>
+                    </select>
+                </div>
+                
+                <div class="actions">
+                    <button type="submit">Create Account</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Welcome Section -->
+        <div class="login-welcome">
+            <div class="logo-section">
+                <img src="{% static 'images/logo.svg' %}" alt="Logo">
+                <h1>Cross Cultural Connect</h1>
+            </div>
+            <p>Already have an account?</p>
+            <a href="{% url 'signin' %}" class="sign-up-btn">Sign In</a>
+        </div>
+    </div>
+</body>
+</html>
