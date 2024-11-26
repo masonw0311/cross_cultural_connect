@@ -1,3 +1,34 @@
-<h1>Welcome, {{ user.username }}!</h1>
-<p>Country of Origin: {{ user.country_of_origin }}</p>
-<a href="{% url 'businesses_home' %}">Explore Businesses</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    {% load static %}
+</head>
+<body style="margin: 0; padding: 0; min-height: 100vh; display: flex; justify-content: center; align-items: center; background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9); font-family: Arial, sans-serif;">
+
+    <div style="background-color: #ffffff; padding: 30px 40px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); max-width: 400px; width: 100%; text-align: center;">
+        
+        <!-- Header Section -->
+        <div style="margin-bottom: 20px;">
+            <img src="{% static 'images/logo.svg' %}" alt="Logo" style="width: 80px; margin-bottom: 10px;">
+            <h1 style="font-size: 28px; color: #333; margin-bottom: 10px;">Welcome to Cross Cultural Connect!</h1>
+            <p style="font-size: 16px; color: #555; margin-bottom: 20px;">Enter your ZIP code to find local information and resources:</p>
+        </div>
+        
+        <!-- ZIP Code Form -->
+        <div>
+            <form method="POST" action="{% url 'process_zip' %}" style="display: flex; flex-direction: column; align-items: center;">
+                {% csrf_token %}
+                <label for="zipcode" style="font-size: 14px; color: #555; display: block; text-align: left; margin-bottom: 5px;">ZIP Code</label>
+                <input type="text" id="zipcode" name="zipcode" placeholder="Enter ZIP Code" required style="width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px;">
+                <button type="submit" style="padding: 10px 20px; background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9); border: none; color: white; font-size: 16px; border-radius: 5px; cursor: pointer; transition: background 0.3s;">
+                    Submit
+                </button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

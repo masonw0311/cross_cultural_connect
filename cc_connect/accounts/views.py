@@ -39,3 +39,21 @@ def create_account(request):
         messages.success(request, 'Account created successfully')
         return redirect('signin')
     return render(request, 'accounts/create_account.html')
+
+#zip code functs
+
+
+def welcome_page(request):
+    username = request.session.get('username', 'Guest')  # Retrieve username from session
+    if request.method == 'POST':
+        zip_code = request.POST.get('zipcode')
+        return redirect('local_businesses', zip_code=zip_code)  # Redirect to businesses page
+
+    return render(request, 'welcome.html', {'username': username})
+
+def process_zip(request):
+    if request.method == 'POST':
+        zip_code = request.POST.get('zipcode')
+        # Process the ZIP code here (e.g., fetch businesses or redirect)
+        return render(request, 'result.html', {'zip_code': zip_code})
+    return render(request, 'welcome.html')

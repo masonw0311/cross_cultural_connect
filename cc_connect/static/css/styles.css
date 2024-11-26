@@ -163,3 +163,71 @@ body {
     padding: 10px;
     font-size: 14px;
 }
+
+/* Gradient Background - Full Page */
+body.gradient-background {
+    background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh; /* Ensures it fills the viewport height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Welcome Container */
+.welcome-container {
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Header Styling */
+.welcome-header h1 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.welcome-header p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* Form Styling */
+.zip-form label {
+    font-size: 14px;
+    color: #555;
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+.zip-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.zip-form button {
+    padding: 10px 20px;
+    background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9);
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.zip-form button:hover {
+    background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
+}
