@@ -1,0 +1,10 @@
+CSRF Token error
+
+Description:
+Reloading page after login results in a crash and csrf token issue. The problem is that Django rotates tokens after login, causing token  to be stale.
+
+Fix:
+Use redirect after login instead of render. Any params can be passed as query parameters. 
+
+For the login page, user is being passed as query parameter. This is not an issue, but user can be referenced directly in template. 
+Need @login_required decorator in view, then can reference user directly in the template. For example: {{ user.username }}
