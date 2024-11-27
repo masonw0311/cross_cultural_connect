@@ -16,7 +16,7 @@ def login(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             auth_login(request, user)
-            return render(request, 'accounts/account_home.html', {'user': user})
+            return redirect('account_home')
         else:
             messages.error(request, 'Invalid credentials')
             return redirect('login')
@@ -47,13 +47,13 @@ def create_account(request):
 #zip code functs
 
 @login_required
-def welcome_page(request):
+def account_home(request):
     username = request.session.get('username', 'Guest')  # Retrieve username from session
     if request.method == 'POST':
         zip_code = request.POST.get('zipcode')
         return redirect('local_businesses', zip_code=zip_code)  # Redirect to businesses page
 
-    return render(request, 'welcome.html', {'username': username})
+    return render(request, 'accounts/account_home.html')
 
 
 def process_zip(request):
