@@ -1,9 +1,12 @@
 How to Add businesses to database
 
 Add yourself to admins if not done already
+  $ python manage.py createsuperuser
 
-$ python manage.py createsuperuser
+Run server
+  $ python manage.py runserver
 
 Navigate to 127.0.0.1:8000/admin/
 
-Do your thing
+Do your thing - add businesses
+Make sure lat/long syntax is correct (West coords are neg, all values float)
