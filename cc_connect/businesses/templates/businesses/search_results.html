@@ -10,7 +10,8 @@
     <h1>Search Results</h1>
     
     <!-- Search Form -->
-    <form method="GET">
+    <form method="GET" action="{% url 'search_businesses' %}">
+        {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Search</button>
     </form>
