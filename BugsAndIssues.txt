@@ -8,3 +8,23 @@ Use redirect after login instead of render. Any params can be passed as query pa
 
 For the login page, user is being passed as query parameter. This is not an issue, but user can be referenced directly in template. 
 Need @login_required decorator in view, then can reference user directly in the template. For example: {{ user.username }}
+
+
+
+Uncaught Syntax Error missing ')'
+
+In javascript console, json objects were incorrectly read, resulting in an error
+Caused by having a "'" single quote in Rokka's supermarket. The single quote messed it up
+Simple fix: no single quotes
+Future fix: Properly escape single quotes
+
+
+Incorrect location for markers
+
+For lat and long:
+
+North is positive, south is negative
+East is positive, west is negative
+
+So 28.23542 N, 81.2349 W is 28.23542, -81.2349
+
