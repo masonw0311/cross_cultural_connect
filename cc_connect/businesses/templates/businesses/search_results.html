@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Business Search Results</title>
+    <style>
+        #map { height: 400px; width: 100%; }
+    </style>
+</head>
+<body>
+    <h1>Search Results</h1>
+    
+    <!-- Search Form -->
+    <form method="GET">
+        {{ form.as_p }}
+        <button type="submit">Search</button>
+    </form>
+
+    <!-- Map Container -->
+    <div id="map"></div>
+
+    <!-- Load Google Maps JavaScript API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&callback=initMap&libraries=places" async defer></script>
+
+
+    <script>
+        // Parse businesses from Django template
+        const businesses = JSON.parse('{{ businesses|safe }}');
+        console.log(businesses);
+        const apiKey = '{{ api_key }}';
+
+        function initMap() {
+            const position = { lat: 28.537988, lng: -81.37874 };
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 9,
+                center: position,
+                mapId: "Orlando Map"
+
+            });
+
+            const infoWindow = new google.maps.InfoWindow();
+            // Add markers for each business
+            businesses.forEach(business => {
+                // Create a DOM element for the marker's content
+                const content = document.createElement("div");
+                content.className = "marker-content";
+                content.innerHTML = `<strong>${business.name}</strong><br>${business.address}`;
+
+                // Create an AdvancedMarkerElement
+                const marker = new google.maps.Marker({
+                    position: { lat: business.latitude, lng: business.longitude },
+                    map: map,
+                    content: content
+                });
+
+                marker.addListener('mouseover', () => {
+                    infoWindow.setContent(
+                        `<div>
+                            <strong>${business.name}</strong><br>
+                            ${business.address}
+                        </div>`
+                    );
+                    infoWindow.open(map, marker);
+                });
+
+                marker.addListener('mouseout', () => {
+                    infoWindow.close();
+                });
+
+            });
+
+        }
+    </script>
+</body>
+</html>

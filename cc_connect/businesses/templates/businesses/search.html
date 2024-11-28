@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Businesses</title>
+</head>
+<body>
+    <h1>Search Businesses</h1>
+
+    <!-- Search form -->
+    <form method="get" action="{% url 'search_businesses' %}">
+        <label for="zip_code">Zip Code:</label>
+        <input type="text" name="zip_code" id="zip_code" placeholder="Enter zip code">
+
+        <label for="business_type">Business Type:</label>
+        <select name="business_type" id="business_type">
+            <option value="all">All</option>
+            <option value="restaurant">Restaurant</option>
+            <option value="store">Store</option>
+            <option value="service">Service</option>
+            <!-- Add more options here as needed -->
+        </select>
+
+        <label for="country">Country:</label>
+        <input type="text" name="country" id="country" placeholder="Enter country">
+
+        <button type="submit">Search</button>
+    </form>
+
+</body>
+</html>
