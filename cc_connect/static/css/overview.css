@@ -283,3 +283,27 @@ body {
     margin: 10px auto; /* Add spacing between elements */
 }
 
+/* Navigation Bar */
+.navbar {
+    position: fixed; /* Keep it at the top of the page */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #0d6efd;
+    padding: 15px 30px;
+    color: white;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Add padding to the body to account for the fixed navbar */
+body {
+    padding-top: 70px; /* Adjust based on the height of your navbar */
+}
+
+/* Map Header */
+.map-header {
+    text-align: center;
+    color: white;
+    margin-top: 20px; /* Extra margin for spacing */
+}
