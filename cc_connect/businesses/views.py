@@ -37,7 +37,6 @@ def search_businesses(request):
         default=str
     )
     
-    print(businesses_json)
     return render(request, 'businesses/search_results.html', {
         'form': form,
         'businesses': businesses_json,

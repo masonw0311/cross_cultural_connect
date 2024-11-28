@@ -36,6 +36,8 @@
                 mapId: "Orlando Map"
 
             });
+
+            const infoWindow = new google.maps.InfoWindow();
             // Add markers for each business
             businesses.forEach(business => {
                 // Create a DOM element for the marker's content
@@ -44,12 +46,28 @@
                 content.innerHTML = `<strong>${business.name}</strong><br>${business.address}`;
 
                 // Create an AdvancedMarkerElement
-                new google.maps.Marker({
+                const marker = new google.maps.Marker({
                     position: { lat: business.latitude, lng: business.longitude },
                     map: map,
                     content: content
                 });
+
+                marker.addListener('mouseover', () => {
+                    infoWindow.setContent(
+                        `<div>
+                            <strong>${business.name}</strong><br>
+                            ${business.address}
+                        </div>`
+                    );
+                    infoWindow.open(map, marker);
+                });
+
+                marker.addListener('mouseout', () => {
+                    infoWindow.close();
+                });
+
             });
+
         }
     </script>
 </body>
