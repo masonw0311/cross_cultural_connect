@@ -1,0 +1,41 @@
+Places API setup doc
+
+Our api key: AIzaSyBCIHsOn29OJ5904rIQdufsxJUmWarvJyM
+
+$200 Limit (~2000 querys)
+
+Create Cloud project
+Enable Billings
+Enable maps api (api key generated here)
+
+In  google api tutorial:
+
+Setup for maps with a marker
+<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCIHsOn29OJ5904rIQdufsxJUmWarvJyM&callback=console.debug&libraries=maps,marker&v=beta">
+    </script>
+    <link rel="stylesheet" href="./style.css"/>
+  </head>
+  <body>
+    <gmp-map center="40.12150192260742,-100.45039367675781" zoom="4" map-id="DEMO_MAP_ID">
+      <gmp-advanced-marker position="40.12150192260742,-100.45039367675781" title="My location"></gmp-advanced-marker>
+    </gmp-map>
+  </body>
+
+
+Search Bar:
+<script type="module" src="https://unpkg.com/@googlemaps/extended-component-library@0.6">
+    </script>
+<body>
+    <gmpx-api-loader key="YOUR_API_KEY_HERE" solution-channel="GMP_GE_placepicker_v1">
+    </gmpx-api-loader>
+    <div id="place-picker-box">
+      <div id="place-picker-container">
+        <gmpx-place-picker placeholder="Enter an address"></gmpx-place-picker>
+      </div>
+    </div>
+  </body>
+
+
+In CSS Always set the map height explicitly to define the size of the div
+ * element that contains the map
+
