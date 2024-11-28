@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
+    <title>Enter ZIP Code</title>
     {% load static %}
+    <link rel="stylesheet" href="{% static 'css/overview.css' %}">
 </head>
 <body style="margin: 0; padding: 0; min-height: 100vh; display: flex; justify-content: center; align-items: center; background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9); font-family: Arial, sans-serif;">
 
@@ -30,5 +31,15 @@
         </div>
     </div>
 
+    <!-- Script to Handle Redirect -->
+    <script>
+        document.querySelector('form').addEventListener('submit', function(e) {
+            const zipCode = document.getElementById('zipcode').value.trim();
+            if (!zipCode) {
+                e.preventDefault();
+                alert('Please enter a valid ZIP code.');
+            }
+        });
+    </script>
 </body>
 </html>

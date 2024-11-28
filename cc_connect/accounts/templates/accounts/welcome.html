@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/overview.css' %}">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-left">
+            <img src="{% static 'images/logo.svg' %}" alt="Logo" class="logo">
+            <span class="navbar-title">Cross Cultural Connect</span>
+        </div>
+        <div class="navbar-links">
+            <a href="{% url 'overview' %}">Overview</a>
+            <a href="{% url 'message_board' %}">Message Board</a>
+            <a>Businesses</a>
+            <a class="profile-icon">P</a>
+        </div>
+    </nav>
+
+    <!-- Welcome Section -->
+    <header class="welcome-header">
+        <div class="welcome-text">
+            <h1>Welcome Back, {{ user.username }} 👋</h1>
+            <p>Here’s your personalized community dashboard.</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="overview-main">
+        <!-- Featured Section -->
+        <section class="featured-section">
+            <h2>Community Highlights</h2>
+            <p>Discover the latest events, meetups, and important announcements in your area.</p>
+            <button class="btn-primary">Explore Now</button>
+        </section>
+
+        <!-- Quick Access Section -->
+        <section class="quick-access">
+            <div class="access-card">
+                <h3>Local Events🌆</h3>
+                <p>Upcoming markets and pop-ups.</p>
+                <button class="btn-primary">View Events</button>
+            </div>
+            <div class="access-card">
+                <h3>Businesses🏚️</h3>
+                <p>Support immigrant-owned businesses in your community.</p>
+                <form action="{% url 'message_board' %}" method="get">
+                    <button type="submit" class="btn-primary">View Messages</button>
+                </form>
+            </div>
+            <div class="access-card">
+                <h3>Community Messages👂</h3>
+                <p>See what others are sharing.</p>
+                <a href="{% url 'message_board' %}" class="btn-primary">View Messages</a>
+            </div>
+        </section>
+
+        <!-- Translator Section -->
+        <section class="translator-section">
+            <h2>Translator🗣️</h2>
+            <p>Use the translator below to bridge communication gaps in your community.</p>
+            <form id="translator-form" method="POST" action="{% url 'translate' %}">
+                {% csrf_token %}
+                <textarea id="text-input" name="text" placeholder="Enter text to translate..." rows="3" required></textarea>
+                <select id="language-select" name="language" required>
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                    <option value="pt">Portuguese</option>
+                </select>
+                <button type="submit" id="translate-button">Translate</button>
+            </form>
+            <div id="translation-output">
+                <h3>Translation Output:</h3>
+                <textarea id="text-output" readonly placeholder="Your translation will appear here..."></textarea>
+            </div>
+        </section>
+    </main>
+
+    <!-- Script to handle translation -->
+    <script>
+        document.getElementById("translator-form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form submission and page reload
+
+            const text = document.getElementById("text-input").value.trim();
+            const language = document.getElementById("language-select").value;
+
+            if (!text) {
+                alert("Please enter text to translate.");
+                return;
+            }
+
+            fetch("{% url 'translate' %}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": "{{ csrf_token }}"
+                },
+                body: JSON.stringify({
+                    text: text,
+                    language: language
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    document.getElementById("text-output").value = `Error: ${data.error}`;
+                } else {
+                    document.getElementById("text-output").value = data.translatedText;
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                document.getElementById("text-output").value = "An error occurred. Please try again.";
+            });
+        });
+    </script>
+
+</body>
+</html>

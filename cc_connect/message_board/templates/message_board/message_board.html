@@ -3,26 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Message Board</title>
+    <title>Community Message Board</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/message_board.css' %}">
 </head>
-<body>
-    <h1>Message Board</h1>
-    <form method="POST">
-        {% csrf_token %}
-        <textarea name="content" rows="3" placeholder="Write your message here..."></textarea>
-        <button type="submit">Send</button>
-    </form>
+<body class="message-board-body">
 
-    <hr>
+    <!-- Navigation Bar -->
+    <nav class="message-board-nav">
+        <div class="nav-left">
+            <img src="{% static 'images/logo.svg' %}" alt="Logo" class="nav-logo">
+            <span class="nav-title">Cross Cultural Connect</span>
+        </div>
+        <div class="nav-links">
+            <a href="{% url 'overview' %}" class="nav-link">Overview</a>
+            <a href="{% url 'message_board' %}" class="nav-link active">Message Board</a>
+            
+        </div>
+        <div class="nav-profile">P</div>
+    </nav>
 
-    <h2>Messages:</h2>
-    <ul>
-        {% for message in messages %}
-        <li>
-            <strong>{{ message.user.username }}</strong> ({{ message.timestamp|date:"M d, Y H:i" }}):
-            <p>{{ message.content }}</p>
-        </li>
-        {% endfor %}
-    </ul>
+    <!-- Main Content -->
+    <div class="message-board-container">
+        <!-- Logo Section -->
+        <div class="logo-section">
+            <img src="{% static 'images/logo.svg' %}" alt="Cross Cultural Connect Logo">
+        </div>
+
+        <!-- Page Header -->
+        <h1>Community Message Board</h1>
+        <p class="description">
+            Welcome to the Cross Cultural Connect message board! This is a space for you to share important updates and events with your community. Post about pop-up shops, markets, meetups, and more. Businesses can also use this space to post job opportunities. Let's work together to build a stronger community!
+        </p>
+
+        <!-- Form for New Message -->
+        <form method="POST" class="message-form">
+            {% csrf_token %}
+            <textarea 
+                name="content" 
+                rows="3" 
+                placeholder="Write your message here (e.g., 'Local meetup this Sunday at 3 PM!')" 
+                required>
+            </textarea>
+            <button type="submit">Post Message</button>
+        </form>
+
+        <!-- Divider -->
+        <hr class="divider">
+
+        <!-- Message List -->
+        <h2>Recent Posts:</h2>
+        <ul class="message-list">
+            {% for message in messages %}
+            <li class="message-item">
+                <strong class="message-user">{{ message.user.username }}</strong> 
+                <span class="message-timestamp">({{ message.timestamp|date:"M d, Y H:i" }})</span>
+                <p class="message-content">{{ message.content }}</p>
+            </li>
+            {% empty %}
+            <li class="message-item-empty">No posts yet. Start the conversation by sharing something for the community!</li>
+            {% endfor %}
+        </ul>
+    </div>
+
 </body>
 </html>
