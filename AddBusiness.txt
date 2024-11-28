@@ -1,0 +1,9 @@
+How to Add businesses to database
+
+Add yourself to admins if not done already
+
+$ python manage.py createsuperuser
+
+Navigate to 127.0.0.1:8000/admin/
+
+Do your thing
