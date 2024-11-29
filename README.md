@@ -10,20 +10,25 @@ TODO:
         - testing plan
 
 
-- privacy policy in account creation
+- add privacy policy in account creation page
+    - Discuss our privacy and security policy
+
 - account settings page
       - deletion,
       - username, password updates
       - logout
-- Welcome page, (hub for rest of website)
 
-- search function
-      - need to research geolocation, addressing, etc before db
-- database with businesses, embassys, etc
+- Welcome page
+    - connect buttons
 
+- Add to database with businesses, resources, embassys, etc
+
+- Map search
+    - css and formatting
 
 - message board
-    - frontend
-    - optimize
+    - test message board
+    - message deletion after x days
 
 - translations
+    - test translator
