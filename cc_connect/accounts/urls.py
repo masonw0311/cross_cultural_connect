@@ -11,4 +11,5 @@ urlpatterns = [
     path("translate/", views.translate_text, name="translate"),
     path('account_home/', views.account_home, name='account_home'),
 
+    path('account_home/', views.account_home, name='account_home')
 ]
