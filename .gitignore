@@ -27,4 +27,4 @@ migrations/
 /media/
 
 # Secrets
-# .env
+#.env

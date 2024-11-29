@@ -1,34 +1,103 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Add Map</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Map</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/overview.css' %}">
     <style>
-        #map { height: 400px; width: 100%; }
-        html, body { height: 100%; margin: 0; padding: 0; }
+        /* Inline fixes for the navbar and header */
+        body {
+            margin: 0;
+            padding-top: 70px; /* Ensure header is not covered by the fixed navbar */
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9);
+        }
+
+        .map-header {
+            text-align: center;
+            color: white;
+            margin-top: 20px;
+        }
+
+        .map-header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .map-header p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        #map-container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 1200px;
+            height: 600px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
-    <h3>My Google Maps Demo</h3>
-    <div id="map"></div>
-    
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-left">
+            <img src="{% static 'images/logo.svg' %}" alt="Logo" class="logo">
+            <span class="navbar-title">Cross Cultural Connect</span>
+        </div>
+        <div class="navbar-links">
+            <a href="{% url 'overview' %}">Overview</a>
+            <a href="{% url 'message_board' %}">Message Board</a>
+            <a>Businesses</a>
+            <a class="profile-icon">P</a>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="map-header">
+        <h1>Interactive Community Map</h1>
+        <p>Explore your community and find local businesses and resources on the map below.</p>
+    </div>
+
+    <!-- Map Container -->
+    <div id="map-container">
+        <div id="map"></div>
+    </div>
+
+    <!-- Google Maps Script -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCIHsOn29OJ5904rIQdufsxJUmWarvJyM&libraries=marker"></script>
     <script>
         function initMap() {
-            const position = { lat: 39.8283, lng: -98.5795 };
+            const position = { lat: 39.8283, lng: -98.5795 }; // Default position (center of the USA)
             const map = new google.maps.Map(document.getElementById("map"), {
                 zoom: 4,
                 center: position,
                 mapId: "DEMO_MAP_ID"
             });
-            
-            new google.maps.marker.AdvancedMarkerElement({
-                map: map,
+
+            // Example marker
+            new google.maps.Marker({
                 position: position,
-                title: "Uluru"
+                map: map,
+                title: "Community Center"
             });
         }
-        
-        google.maps.event.addDomListener(window, 'load', initMap);
+
+        // Initialize the map on page load
+        window.onload = initMap;
     </script>
+
 </body>
 </html>

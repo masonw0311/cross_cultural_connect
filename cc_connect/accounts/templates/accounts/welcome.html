@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="{% static 'css/overview.css' %}">
 </head>
 <body>
-
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="navbar-left">
@@ -19,107 +18,103 @@
             <a href="{% url 'overview' %}">Overview</a>
             <a href="{% url 'message_board' %}">Message Board</a>
             <a>Businesses</a>
+            <a>Map🗺️</a>
             <a class="profile-icon">P</a>
         </div>
     </nav>
 
-    <!-- Welcome Section -->
-    <header class="welcome-header">
-        <div class="welcome-text">
+    <!-- Main Grid Layout -->
+    <main class="grid-container">
+        <!-- A: Welcome Section -->
+        <section class="grid-item welcome-header">
             <h1>Welcome Back, {{ user.username }} 👋</h1>
-            <p>Here’s your personalized community dashboard.</p>
-        </div>
-    </header>
+            <p>Your personalized community dashboard awaits.</p>
+        </section>
 
-    <!-- Main Content -->
-    <main class="overview-main">
-        <!-- Featured Section -->
-        <section class="featured-section">
+        <!-- B: Community Highlights -->
+        <section class="grid-item highlights">
             <h2>Community Highlights</h2>
             <p>Discover the latest events, meetups, and important announcements in your area.</p>
             <button class="btn-primary">Explore Now</button>
         </section>
 
-        <!-- Quick Access Section -->
-        <section class="quick-access">
-            <div class="access-card">
-                <h3>Local Events🌆</h3>
-                <p>Upcoming markets and pop-ups.</p>
-                <button class="btn-primary">View Events</button>
-            </div>
-            <div class="access-card">
-                <h3>Businesses🏚️</h3>
-                <p>Support immigrant-owned businesses in your community.</p>
-                <form action="{% url 'message_board' %}" method="get">
-                    <button type="submit" class="btn-primary">View Messages</button>
-                </form>
-            </div>
-            <div class="access-card">
-                <h3>Community Messages👂</h3>
-                <p>See what others are sharing.</p>
-                <a href="{% url 'message_board' %}" class="btn-primary">View Messages</a>
-            </div>
+        <!-- C: Local Events -->
+        <section class="grid-item access-card">
+            <h3>Local Events🌆</h3>
+            <p>Upcoming markets and pop-ups.</p>
+            <button class="btn-primary">View Events</button>
         </section>
 
-        <!-- Translator Section -->
-        <section class="translator-section">
-            <h2>Translator🗣️</h2>
-            <p>Use the translator below to bridge communication gaps in your community.</p>
-            <form id="translator-form" method="POST" action="{% url 'translate' %}">
-                {% csrf_token %}
-                <textarea id="text-input" name="text" placeholder="Enter text to translate..." rows="3" required></textarea>
-                <select id="language-select" name="language" required>
-                    <option value="en">English</option>
-                    <option value="es">Spanish</option>
-                    <option value="pt">Portuguese</option>
-                </select>
-                <button type="submit" id="translate-button">Translate</button>
-            </form>
-            <div id="translation-output">
-                <h3>Translation Output:</h3>
-                <textarea id="text-output" readonly placeholder="Your translation will appear here..."></textarea>
-            </div>
+        <!-- D: Businesses -->
+        <section class="grid-item access-card">
+            <h3>Businesses🏚️</h3>
+            <p>Support immigrant-owned businesses in your community.</p>
+            <button class="btn-primary">Explore Businesses</button>
         </section>
-    </main>
 
-    <!-- Script to handle translation -->
-    <script>
-        document.getElementById("translator-form").addEventListener("submit", function(event) {
-            event.preventDefault(); // Prevent form submission and page reload
+        <!-- E: Community Messages -->
+        <section class="grid-item access-card">
+            <h3>Community Messages👂</h3>
+            <p>See what others are sharing.</p>
+            <button class="btn-primary">View Messages</button>
+        </section>
 
-            const text = document.getElementById("text-input").value.trim();
-            const language = document.getElementById("language-select").value;
+       <!-- F: Translator Section -->
+<section class="translator-section">
+    <div class="translator-text">
+        <h2>Translator</h2>
+        <p>Use the translator below to bridge communication gaps in your community.</p>
+    </div>
+    <div class="translator-interface">
+        <textarea id="text-input" placeholder="Enter text to translate..."></textarea>
+        <textarea id="text-output" placeholder="Your translation will appear here..." readonly></textarea>
+    </div>
+    <div class="translator-controls">
+        <select id="language-select">
+            <option value="en">English</option>
+            <option value="es">Spanish</option>
+            <option value="pt">Portuguese</option>
+        </select>
+        <button id="translate-button">Generate</button>
+    </div>
+</section>
 
-            if (!text) {
-                alert("Please enter text to translate.");
-                return;
-            }
-
-            fetch("{% url 'translate' %}", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRFToken": "{{ csrf_token }}"
-                },
-                body: JSON.stringify({
-                    text: text,
-                    language: language
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.error) {
-                    document.getElementById("text-output").value = `Error: ${data.error}`;
-                } else {
-                    document.getElementById("text-output").value = data.translatedText;
-                }
-            })
-            .catch(error => {
-                console.error("Error:", error);
-                document.getElementById("text-output").value = "An error occurred. Please try again.";
-            });
-        });
-    </script>
-
+</main>
 </body>
 </html>
+
+<!-- JavaScript -->
+<script>
+    document.getElementById("translate-button").addEventListener("click", function(event) {
+        event.preventDefault(); // Prevent page reload
+
+        const text = document.getElementById("text-input").value.trim();
+        const language = document.getElementById("language-select").value;
+
+        if (!text) {
+            alert("Please enter text to translate.");
+            return;
+        }
+
+        fetch("{% url 'translate' %}", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": "{{ csrf_token }}"
+            },
+            body: JSON.stringify({ text, language })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                document.getElementById("text-output").value = `Error: ${data.error}`;
+            } else {
+                document.getElementById("text-output").value = data.translatedText;
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            document.getElementById("text-output").value = "An error occurred. Please try again.";
+        });
+    });
+</script>
