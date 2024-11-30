@@ -24,7 +24,7 @@ TODO:
 - Add to database with businesses, resources, embassys, etc
 
 - Map search
-    - css and formatting
+    - update functionality
 
 - message board
     - test message board
