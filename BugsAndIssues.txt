@@ -1,3 +1,16 @@
+Businesses not showing up after git pull
+Description:
+databse file properly pulled from github, businesses are not showing up in maps
+
+Fix:
+No, someone did not overwrite the database and delete our entries (i hope)
+make sure db is up to date with migrations
+
+$ ptyhon manage.py makemigrations
+$ python manage.py migrate
+
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
 CSRF Token error
 
 Description:
@@ -9,22 +22,45 @@ Use redirect after login instead of render. Any params can be passed as query pa
 For the login page, user is being passed as query parameter. This is not an issue, but user can be referenced directly in template. 
 Need @login_required decorator in view, then can reference user directly in the template. For example: {{ user.username }}
 
+---------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 Uncaught Syntax Error missing ')'
-
+Description:
 In javascript console, json objects were incorrectly read, resulting in an error
 Caused by having a "'" single quote in Rokka's supermarket. The single quote messed it up
-Simple fix: no single quotes
+
+Fixes
+Simple fix: no single quotes in business names
 Future fix: Properly escape single quotes
 
+---------------------------------------------------------------------------------------------------------------------------------------------------
 
 Incorrect location for markers
+Description:
+Incorrect latitude and longitude made businesses not show up or show up on the wrong
+side of the world. 
+28.23542 N, 81.2349 W did not show up
+28.23542, 81.2349 showed up in India
+
+Fix:
+Proper latitude and longitude syntax in database
 
 For lat and long:
-
 North is positive, south is negative
 East is positive, west is negative
 
 So 28.23542 N, 81.2349 W is 28.23542, -81.2349
 
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Google Authorization error:
+Description:
+After running runserver, program crashes without running server
+Terminal displays message about google authorization incorrect
+
+Fix:
+Download service-accounts-key.json - get from Mason, Edward, or groupchat. We are not housing on github to protect secret key
+Run in terminal:
+$ export GOOGLE_APPLICATION_CREDENTIALS="/path/to/service-accounts-key.json"
