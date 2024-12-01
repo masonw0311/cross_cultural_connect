@@ -23,11 +23,7 @@ TODO:
       
 - Add to database with businesses, resources, embassys, etc
 
-- Map search
-    - update functionality
-    - update pin functionality
 
 - message board
-    - test message board
     - message deletion after x days
 
