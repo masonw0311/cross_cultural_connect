@@ -1,0 +1,31 @@
+<!-- navbar.html -->
+{% load static %}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+
+<nav class="navbar">
+    <!-- Left Section: Logo and Title -->
+    <div class="navbar-left">
+        <img src="{% static 'images/logo.svg' %}" alt="Logo" class="navbar-logo">
+        <span class="navbar-title">Cross Cultural Connect</span>
+    </div>
+
+    <!-- Right Section: Links and Profile Icon -->
+    <div class="navbar-right">
+        <a href="{% url 'overview' %}" class="navbar-link">
+            <i class="fas fa-home navbar-icon"></i> Overview
+        </a>
+        <a href="{% url 'message_board' %}" class="navbar-link">
+            <i class="fas fa-comments navbar-icon"></i> Message Board
+        </a>
+        <a href="{% url 'business_home' %}" class="navbar-link">
+            <i class="fas fa-store navbar-icon"></i> Businesses
+        </a>
+        <a href="{% url 'map' %}" class="navbar-link">
+            <i class="fas fa-map-marker-alt navbar-icon"></i> Map
+        </a>
+        <a href="#" onclick="openProfileModal()" class="profile-icon">
+            <i class="fas fa-user"></i>
+        </a>
+    </div>
+</nav>

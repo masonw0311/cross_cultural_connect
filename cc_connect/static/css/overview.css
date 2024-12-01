@@ -5,7 +5,7 @@ body {
     background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9);
     color: #333;
     line-height: 1.6;
-    padding-top: 70px; /* Adjust for navbar height */
+    padding-top: 100px; /* Adjust for navbar height */
 }
 
 /* Navigation Bar */
@@ -72,13 +72,13 @@ body {
 
 /* A: Welcome Header */
 .welcome-header {
-    grid-area: welcome;
-    text-align: center;
-    padding: 50px 20px;
-    background: linear-gradient(to right, #c471ed, #12c2e9);
-    border-radius: 10px;
+    background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9);
     color: white;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Adds depth */
+    
 }
 
 .welcome-header h1 {
@@ -167,65 +167,63 @@ body {
     background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
 }
 
-/* Translator Section with Light Opacity */
-/* Translator Section with Stacked Text */
+/* Translator Section */
 .translator-section {
     grid-area: translator;
-    background: rgba(255, 255, 255, 0.7); /* Semi-transparent white */
-    backdrop-filter: blur(10px); /* Blurred effect */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-    max-width: 1200px; /* Full width for large screens */
-    margin: 20px auto; /* Center alignment */
-    padding: 30px; /* Spacing inside the section */
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 30px;
     display: flex;
-    flex-direction: column; /* Stacked layout */
-    gap: 20px; /* Spacing between elements */
+    flex-direction: column;
+    gap: 20px;
 }
 
-/* Translator Text Section */
 .translator-text {
-    text-align: left; /* Align text to the left */
+    text-align: left;
 }
 
 .translator-text h2 {
-    font-size: 24px;
+    font-size: 30px;
     color: #333;
     margin-bottom: 10px;
+    text-align: center;
 }
 
 .translator-text p {
-    font-size: 16px;
+    font-size: 20px;
     color: #555;
     margin-bottom: 20px;
+    text-align: center;
 }
 
-/* Translator Input and Output Boxes */
 .translator-interface {
     display: flex;
-    justify-content: space-between; /* Side-by-side layout */
-    gap: 20px; /* Spacing between boxes */
+    justify-content: space-between;
+    gap: 20px;
 }
 
 .translator-interface textarea {
-    width: 48%; /* Each box takes up half the available space */
-    height: 200px; /* Tall boxes */
-    padding: 15px; /* Spacious padding */
-    font-size: 18px; /* Larger text size */
-    border: 1px solid #ddd; /* Subtle border */
-    border-radius: 10px; /* Rounded corners */
-    resize: none; /* Disable resizing */
-    background-color: #f9f9f9; /* Slightly lighter background */
-    color: #333; /* Dark text for readability */
-    background: rgba(255, 255, 255, 0.5); /* Semi-transparent white */
+    width: 48%;
+    height: 200px;
+    padding: 15px;
+    font-size: 18px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    resize: none;
+    background-color: #f9f9f9;
+    color: #333;
+    background: rgba(255, 255, 255, 0.5);
 }
 
-/* Translator Controls (Button and Dropdown) */
 .translator-controls {
     display: flex;
-    justify-content: center; /* Center align controls */
-    align-items: center; /* Vertical alignment */
-    gap: 10px; /* Spacing between elements */
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 
 .translator-controls select {
@@ -250,50 +248,4 @@ body {
 
 .translator-controls button:hover {
     background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
-}
-/* Business Section */
-.business-section {
-    text-align: center;
-    padding: 30px 0;
-}
-
-.business-section h2 {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
-
-.business-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.business-card {
-    background: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: left;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.business-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-}
-
-.business-card h3 {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.business-card p {
-    margin-bottom: 5px;
-    font-size: 14px;
-    color: #555;
 }

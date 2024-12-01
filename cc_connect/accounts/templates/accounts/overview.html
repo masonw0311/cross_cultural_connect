@@ -10,102 +10,39 @@
 </head>
 <body>
     <!-- Navbar -->
-    <nav style="
-        background: rgba(0, 0, 0, 0.3);
-        backdrop-filter: blur(10px);
-        padding: 15px 20px;
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 1000;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    ">
-        <!-- Left Section: Logo and Title -->
-        <div style="display: flex; align-items: center;">
-            <img src="{% static 'images/logo.svg' %}" alt="Logo" style="width: 35px; height: 35px; margin-right: 10px;">
-            <span style="font-size: 20px; font-weight: bold;">Cross Cultural Connect</span>
-        </div>
-
-        <!-- Right Section: Links and Profile Icon -->
-        <div style="
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-left: auto;
-            flex-shrink: 0;
-        ">
-        <a href="{% url 'overview' %}" style="color: white; text-decoration: none; font-size: 14px; display: flex; align-items: center;">
-            <i class="fas fa-home" style="margin-right: 5px;"></i> Overview
-        </a>
-        <a href="{% url 'message_board' %}" style="color: white; text-decoration: none; font-size: 14px; display: flex; align-items: center;">
-            <i class="fas fa-comments" style="margin-right: 5px;"></i> Message Board
-        </a>
-        <a href="{% url 'business_home' %}" style="color: white; text-decoration: none; font-size: 14px; display: flex; align-items: center;">
-            <i class="fas fa-store" style="margin-right: 5px;"></i> Businesses
-        </a>
-        <a href="{% url 'map' %}" style="color: white; text-decoration: none; font-size: 14px; display: flex; align-items: center;">
-            <i class="fas fa-map-marker-alt" style="margin-right: 5px;"></i> Map
-        </a>
-            <!-- Profile Icon -->
-            <!-- Profile Icon -->
-<a href="#" onclick="openProfileModal()" style="
-display: flex;
-justify-content: center;
-align-items: center;
-width: 40px;
-height: 40px;
-background: none;
-color: white;
-border-radius: 50%;
-text-decoration: none;
-">
-<i class="fas fa-user" style="font-size: 18px;"></i>
-</a>
-
-        </div>
-    </nav>
-
+    {% include 'shared/navbar.html' %}
     <!-- Main Grid Layout -->
-    <main class="grid-container">
-        <!-- A: Welcome Section -->
-        <section class="grid-item welcome-header">
+    <div class="grid-container">
+        <section class="welcome-header" style="grid-area: welcome;">
             <h1>Welcome Back, {{ user.username }} 👋</h1>
             <p>Your personalized community dashboard awaits.</p>
         </section>
-
-        <!-- B: Community Highlights -->
-        <section class="grid-item highlights">
+     
+        <section class="highlights" style="grid-area: highlights;">
             <h2>Community Highlights</h2>
             <p>Discover the latest events, meetups, and important announcements in your area.</p>
             <button class="btn-primary">Explore Now</button>
         </section>
-
-        <!-- C: Local Events -->
-        <section class="grid-item access-card">
-            <h3>Local Events🌆</h3>
+     
+        <section class="access-card" style="grid-area: local-events;">
+            <h3>Local Events</h3>
             <p>Upcoming markets and pop-ups.</p>
             <button class="btn-primary">View Events</button>
         </section>
-
-        <!-- D: Businesses -->
-        <section class="grid-item access-card">
-            <h3>Businesses🏚️</h3>
+     
+        <section class="access-card" style="grid-area: businesses;">
+            <h3>Businesses</h3>
             <p>Support immigrant-owned businesses in your community.</p>
-            <button class="btn-primary" onclick="window.location.href='{% url 'business_home' %}'">Explore Businesses</button>
+            <button class="btn-primary">Explore Businesses</button>
         </section>
-
-        <!-- E: Community Messages -->
-        <section class="grid-item access-card">
-            <h3>Community Messages👂</h3>
+     
+        <section class="access-card" style="grid-area: community-messages;">
+            <h3>Community Messages</h3>
             <p>See what others are sharing.</p>
-            <button class="btn-primary" onclick="window.location.href='{% url 'message_board' %}'">View Messages</button>
+            <button class="btn-primary">View Messages</button>
         </section>
-
+     </div>
+     
         <!-- F: Translator Section -->
         <section class="translator-section">
             <div class="translator-text">

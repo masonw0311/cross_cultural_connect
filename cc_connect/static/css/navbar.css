@@ -1,0 +1,212 @@
+/* General Styles */
+body {
+    margin: 0;
+    padding-top: 70px; /* Offset for fixed navbar */
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9);
+}
+
+/* Navbar Styles */
+nav {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    padding: 15px 20px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Shift everything to the left */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo and Title Section */
+nav div {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Adjust spacing between elements */
+}
+
+nav div img {
+    width: 35px;
+    height: 35px;
+    margin-right: 10px;
+}
+
+/* Navigation Links */
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+nav a:hover {
+    color:#c471ed;  /* Add hover effect for links */
+}
+
+nav a i {
+    font-size: 18px;
+}
+
+/* Profile Icon */
+/* Profile Icon */
+nav a.profile-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    background: none; /* No background color */
+    margin-left: auto; /* Align it to the far-right */
+}
+
+nav a.profile-icon:hover {
+    color:#c471ed; /* Add hover effect */
+}
+
+
+/* Other Styling for Links */
+nav a i {
+    margin-right: 5px;
+}
+
+/* Dropdown Profile Modal Styling */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+}
+
+.modal-content button {
+    background: gray;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.modal-content button:hover {
+    background: #f64f59;
+    color: white;
+}
+
+/* Grid Styling for Main Content */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.grid-item {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Buttons */
+.btn-primary {
+    display: inline-block;
+    padding: 10px 20px;
+    background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
+}
+/* Align the navbar items and fix the profile icon alignment */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-left img {
+    width: 35px;
+    height: 35px;
+    margin-right: 10px;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.navbar-right a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Adjust gap for closer spacing */
+    margin-right: 20px; /* Add a margin to push the items to the left */
+}
+
+/* Profile Icon */
+.navbar-right .profile-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    text-decoration: none;
+    color: white;
+    background: none; /* Remove the background */
+}
+
+.navbar-right .profile-icon i {
+    font-size: 18px;
+}

@@ -57,8 +57,8 @@ ROOT_URLCONF = 'cc_connect.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "templates"],
-        'APP_DIRS': True,
+        'DIRS': [],  # Keep this empty if you rely on app-level templates
+        'APP_DIRS': True,  # Ensure this is set to True
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -69,6 +69,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'cc_connect.wsgi.application'
 
