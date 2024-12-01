@@ -7,10 +7,10 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/overview.css' %}">
     <style>
-        /* Inline fixes for the navbar and header */
+        /* General Styles */
         body {
             margin: 0;
-            padding-top: 70px; /* Ensure header is not covered by the fixed navbar */
+            padding-top: 70px;
             font-family: Arial, sans-serif;
             background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9);
         }
@@ -47,62 +47,101 @@
             height: 100%;
             border-radius: 10px;
         }
+
+        .info-window {
+            max-width: 300px;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .info-window .profile-pic {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .info-window h2 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .info-window p {
+            font-size: 14px;
+            margin: 5px 0;
+        }
+
+        .info-window a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 15px;
+            background: linear-gradient(to right, #33ccff, #ff99cc);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .info-window a:hover {
+            box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
     </style>
 </head>
 <body>
 
-    <!-- Navigation Bar -->
-    < <!-- Navbar -->
-    <nav style="
-        background: rgba(0, 0, 0, 0.3);
-        backdrop-filter: blur(10px);
-        padding: 15px 20px;
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 1000;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    ">
-        <!-- Left Section: Logo and Title -->
-        <div style="display: flex; align-items: center;">
-            <img src="{% static 'images/logo.svg' %}" alt="Logo" style="width: 35px; height: 35px; margin-right: 10px;">
-            <span style="font-size: 20px; font-weight: bold;">Cross Cultural Connect</span>
-        </div>
+     <!-- Navbar -->
+     <nav style="
+     background: rgba(0, 0, 0, 0.3);
+     backdrop-filter: blur(10px);
+     padding: 15px 20px;
+     color: white;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     position: fixed;
+     top: 0;
+     left: 0;
+     right: 0;
+     z-index: 1000;
+     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+ ">
+     <!-- Left Section: Logo and Title -->
+     <div style="display: flex; align-items: center;">
+         <img src="{% static 'images/logo.svg' %}" alt="Logo" style="width: 35px; height: 35px; margin-right: 10px;">
+         <span style="font-size: 20px; font-weight: bold;">Cross Cultural Connect</span>
+     </div>
 
-        <!-- Right Section: Links and Profile Icon -->
-        <div style="
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-left: auto;
-            flex-shrink: 0;
-        ">
-            <a href="{% url 'overview' %}" style="color: white; text-decoration: none; font-size: 14px;">Overview</a>
-            <a href="{% url 'message_board' %}" style="color: white; text-decoration: none; font-size: 14px;">Message Board</a>
-            <a href="{% url 'business_home' %}" style="color: white; text-decoration: none; font-size: 14px;">Businesses</a>
-            <a href="{% url 'map' %}" style="color: white; text-decoration: none; font-size: 14px;">Map </a>
-            <!-- Profile Icon -->
-            <a href="#" onclick="openProfileModal()" style="
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                width: 40px;
-                height: 40px;
-                background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9);
-                color: white;
-                border-radius: 50%;
-                text-decoration: none;
-            ">
-                <i class="fa-solid fa-user" style="font-size: 18px;"></i>
-            </a>
-        </div>
-    </nav>
-
+     <!-- Right Section: Links and Profile Icon -->
+     <div style="
+         display: flex;
+         align-items: center;
+         gap: 15px;
+         margin-left: auto;
+         flex-shrink: 0;
+     ">
+         <a href="{% url 'overview' %}" style="color: white; text-decoration: none; font-size: 14px;">Overview</a>
+         <a href="{% url 'message_board' %}" style="color: white; text-decoration: none; font-size: 14px;">Message Board</a>
+         <a href="{% url 'business_home' %}" style="color: white; text-decoration: none; font-size: 14px;">Businesses</a>
+         <a href="{% url 'map' %}" style="color: white; text-decoration: none; font-size: 14px;">Map </a>
+         <!-- Profile Icon -->
+         <a href="#" onclick="openProfileModal()" style="
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             width: 40px;
+             height: 40px;
+             background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9);
+             color: white;
+             border-radius: 50%;
+             text-decoration: none;
+         ">
+             <i class="fa-solid fa-user" style="font-size: 18px;"></i>
+         </a>
+     </div>
+ </nav>
 
     <!-- Page Header -->
     <div class="map-header">
@@ -116,27 +155,47 @@
     </div>
 
     <!-- Google Maps Script -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCIHsOn29OJ5904rIQdufsxJUmWarvJyM&libraries=marker"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCIHsOn29OJ5904rIQdufsxJUmWarvJyM&callback=initMap" async defer></script>
     <script>
         function initMap() {
-            const position = { lat: 39.8283, lng: -98.5795 }; // Default position (center of the USA)
             const map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 4,
-                center: position,
-                mapId: "DEMO_MAP_ID"
+                zoom: 10,
+                center: { lat: 28.538336, lng: -81.379234 }, // Central Florida
             });
 
-            // Example marker
-            new google.maps.Marker({
-                position: position,
-                map: map,
-                title: "Community Center"
+            const businesses = JSON.parse('{{ businesses|safe }}');
+
+            businesses.forEach((business) => {
+                if (business.latitude && business.longitude) {
+                    const marker = new google.maps.Marker({
+                        position: {
+                            lat: parseFloat(business.latitude),
+                            lng: parseFloat(business.longitude),
+                        },
+                        map: map,
+                        title: business.name,
+                    });
+
+                    const infoWindow = new google.maps.InfoWindow({
+                        content: `
+                            <div class="info-window">
+                                ${business.image_url ? `<img src="${business.image_url}" alt="${business.name}" class="profile-pic">` : ""}
+                                <h2>${business.name}</h2>
+                                <p><strong>Type:</strong> ${business.business_type || "N/A"}</p>
+                                <p><strong>Country:</strong> ${business.country || "N/A"}</p>
+                                <p><strong>Address:</strong> ${business.address || "N/A"}</p>
+                                <p><strong>Phone:</strong> ${business.phone_number || "N/A"}</p>
+                                <a href="${business.website || "#"}" target="_blank">Visit Website</a>
+                            </div>
+                        `,
+                    });
+
+                    marker.addListener("click", () => {
+                        infoWindow.open(map, marker);
+                    });
+                }
             });
         }
-
-        // Initialize the map on page load
-        window.onload = initMap;
     </script>
-
 </body>
 </html>

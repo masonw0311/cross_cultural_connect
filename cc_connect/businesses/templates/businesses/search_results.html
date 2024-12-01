@@ -42,18 +42,9 @@
         .search-container button:hover {
             background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
         }
-
-        .results-header {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 24px;
-            font-weight: bold;
-            color: #333;
-        }
     </style>
 </head>
 <body>
-    <!-- Navbar -->
     <!-- Navbar -->
     <nav style="
         background: rgba(0, 0, 0, 0.3);
@@ -105,7 +96,6 @@
         </div>
     </nav>
 
-
     <!-- Header -->
     <header class="welcome-header">
         <h1>Search Results</h1>
@@ -129,41 +119,44 @@
         {{ businesses|json_script:"businesses" }}
     </script>
 
-    <!-- Load Google Maps JavaScript API -->
-    <script src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&callback=initMap&libraries=places" async defer></script>
+    <!-- Google Maps JavaScript API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&callback=initMap" async defer></script>
 
     <script>
-        const businesses = JSON.parse(document.getElementById('businesses-data').textContent);
-
         function initMap() {
-            const position = { lat: 28.537988, lng: -81.37874 }; // Default center position
+            // Default map center
+            const defaultPosition = { lat: 28.537988, lng: -81.37874 };
             const map = new google.maps.Map(document.getElementById("map"), {
                 zoom: 9,
-                center: position,
+                center: defaultPosition,
             });
 
+            // Businesses data
+            const businesses = JSON.parse(document.getElementById('businesses-data').textContent);
+
+            // InfoWindow instance
             const infoWindow = new google.maps.InfoWindow();
 
+            // Add markers for each business
             businesses.forEach(business => {
-                const marker = new google.maps.Marker({
-                    position: { lat: business.latitude, lng: business.longitude },
-                    map: map,
-                    title: business.name,
-                });
+                if (business.latitude && business.longitude) {
+                    const marker = new google.maps.Marker({
+                        position: { lat: business.latitude, lng: business.longitude },
+                        map: map,
+                        title: business.name,
+                    });
 
-                marker.addListener('mouseover', () => {
-                    infoWindow.setContent(`
-                        <div class="marker-content">
-                            <strong>${business.name}</strong><br>
-                            ${business.address}
-                        </div>
-                    `);
-                    infoWindow.open(map, marker);
-                });
-
-                marker.addListener('mouseout', () => {
-                    infoWindow.close();
-                });
+                    marker.addListener("click", () => {
+                        infoWindow.setContent(`
+                            <div>
+                                <strong>${business.name}</strong><br>
+                                ${business.address}<br>
+                                <a href="${business.website}" target="_blank">Visit Website</a>
+                            </div>
+                        `);
+                        infoWindow.open(map, marker);
+                    });
+                }
             });
         }
     </script>
