@@ -14,13 +14,13 @@ TODO:
     - Discuss our privacy and security policy
 
 - account settings page
-      - deletion,
-      - username, password updates
-      - logout
+    - test username change
+    - test account deletion
 
 - Welcome page
-    - connect buttons
-
+    - community highlights
+    - local events
+      
 - Add to database with businesses, resources, embassys, etc
 
 - Map search
@@ -31,5 +31,3 @@ TODO:
     - test message board
     - message deletion after x days
 
-- translations
-    - test translator
