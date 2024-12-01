@@ -249,3 +249,61 @@ body {
 .translator-controls button:hover {
     background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
 }
+
+
+/* How It Works Section */
+/* How It Works Section */
+.how-it-works {
+    background: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+    backdrop-filter: blur(10px); /* Add subtle blur effect */
+    border-radius: 10px; /* Rounded corners */
+    padding: 30px; /* Inner spacing */
+    margin: 20px auto; /* Center horizontally */
+    max-width: 800px; /* Limit the width */
+    text-align: center; /* Center-align the text */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Title Styling */
+.how-it-works h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px; /* Space below the title */
+    font-weight: bold;
+}
+
+/* Ordered List Styling */
+.how-it-works ol {
+    list-style: decimal; /* Ordered list */
+    padding-left: 20px; /* Indent the list items */
+    text-align: left; /* Align the list items to the left */
+    color: #555; /* Slightly muted text */
+    font-size: 16px;
+    margin: 20px auto; /* Center-align the list */
+    max-width: 600px; /* Constrain the width of the list */
+}
+
+/* List Items */
+.how-it-works li {
+    margin-bottom: 10px; /* Space between items */
+    line-height: 1.6; /* Increase line spacing */
+}
+
+/* Button Styling */
+.how-it-works a.btn-primary {
+    display: inline-block; /* Make it look like a button */
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9);
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+    margin-top: 20px;
+}
+
+.how-it-works a.btn-primary:hover {
+    background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
+}
