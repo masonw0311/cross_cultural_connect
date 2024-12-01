@@ -70,7 +70,7 @@
 
     <!-- Safe JSON Script -->
     <script id="businesses-data" type="application/json">
-        {{ businesses|json_script:"businesses" }}
+        {{ businesses|safe }}
     </script>
 
     <!-- Google Maps JavaScript API -->
