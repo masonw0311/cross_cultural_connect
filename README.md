@@ -25,6 +25,7 @@ TODO:
 
 - Map search
     - update functionality
+    - update pin functionality
 
 - message board
     - test message board
