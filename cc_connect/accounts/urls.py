@@ -10,6 +10,6 @@ urlpatterns = [
     path('welcome/', views.welcome_view, name='welcome'),
     path("translate/", views.translate_text, name="translate"),
     path('account_home/', views.account_home, name='account_home'),
-path('delete_account/', views.delete_account, name='delete_account'),
-    path('account_home/', views.account_home, name='account_home')
+    path('delete_account/', views.delete_account, name='delete_account'),
+    path('account_management/', views.account_management, name='account_management')
 ]

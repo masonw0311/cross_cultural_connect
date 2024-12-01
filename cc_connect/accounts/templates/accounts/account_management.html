@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <style>
+        /* Define the grid container */
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns */
+    grid-template-rows: auto; /* Automatically sized rows */
+    grid-gap: 20px; /* Space between grid items */
+    grid-template-areas:
+        "welcome update-username"
+        "update-country update-password"
+        "delete-account delete-account";
+    padding: 20px;
+}
+
+/* Style for each section */
+.access-card {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-header {
+    grid-area: welcome;
+    background-color: #e0f7fa;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* Add spacing to form elements */
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* Button Styling */
+.btn-danger {
+    background-color: red;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    {% include 'shared/navbar.html' %}
+    <!-- Main Grid Layout -->
+    <div class="grid-container">
+        <!-- User Information Section -->
+        <section class="welcome-header" style="grid-area: welcome;">
+            <h1>Account Settings</h1>
+            <p><strong>Username:</strong> {{ user.username }}</p>
+            <p><strong>Country of Origin:</strong> {{ user.country_of_origin }}</p>
+        </section>
+
+        <section class="access-card" style="grid-area: update-username;">
+            <h1>Update Username</h1>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ account_form.as_p }}
+                </div>
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+            </form>
+        </section>
+
+        <section class="access-card" style="grid-area: update-country;">
+            <h1>Change Country of Origin</h1>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ profile_form.as_p }}
+                </div>
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+            </form>
+        </section>
+
+        <section class="access-card" style="grid-area: update-password;">
+            <h1>Change Password</h1>
+            <div class="form-group">
+                {{ password_form.as_p }}
+            </div>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+        </form>
+        </section>
+
+        <!-- Delete Account Section -->
+        <section class="access-card" style="grid-area: delete-account;">
+            <h1>Delete Account</h1>
+            <p>If you delete your account, all your data will be permanently removed. This action cannot be undone.</p>
+            <form method="post" action="">
+                {% csrf_token %}
+                <button type="submit" name="delete_account" class="btn-danger">Delete Account</button>
+            </form>
+        </section>
+    </div>
+
+</body>
+</html>

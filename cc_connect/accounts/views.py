@@ -1,8 +1,10 @@
-from django.contrib.auth import authenticate, logout, login as auth_login
+from django.contrib.auth import authenticate, logout, login as auth_login, update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import User
+from .forms import AccountUpdateForm, ProfileUpdateForm
 
 
 from django.http import JsonResponse
@@ -132,3 +134,44 @@ def delete_account(request):
         messages.success(request, "Your account has been successfully deleted.")
         return redirect('login')  # Redirect to the login page after deletion
     return render(request, 'delete_account.html')  # Renders a confirmation pag
+
+@login_required
+def account_management(request):
+    if request.method == "POST":
+        user = request.user
+
+        # Handle account deletion
+        if 'delete_account' in request.POST:
+            user.delete()
+            logout(request)
+            messages.success(request, "Your account has been deleted.")
+            return redirect('login')
+        
+        account_form = AccountUpdateForm(request.POST, instance=user)
+        if account_form.is_valid():
+            account_form.save()
+            messages.success(request, "Your username has been updated.")
+
+        profile_form = ProfileUpdateForm(request.POST)
+        if profile_form.is_valid():
+            user.country_of_origin = profile_form.cleaned_data['country_of_origin']
+            user.save()
+            messages.success(request, "Your country of origin has been updated.")
+
+        password_form = PasswordChangeForm(user, request.POST)
+        if password_form.is_valid():
+            user.set_password(password_form.cleaned_data['new_password1'])
+            user.save()
+            update_session_auth_hash(request, user)  # Keeps the user logged in after changing password
+            messages.success(request, "Your password has been updated.")
+
+    else:        
+        account_form = AccountUpdateForm(instance=request.user)        
+        profile_form = ProfileUpdateForm(initial={'country_of_origin': request.user.country_of_origin})
+        password_form = PasswordChangeForm(request.user)
+        
+    return render(request, 'accounts/account_management.html', {
+        'account_form': account_form,
+        'profile_form': profile_form,
+        'password_form': password_form,
+    })
