@@ -251,14 +251,19 @@
 
     <!-- Featured Businesses Section -->
     <section class="businesses-container">
-        <h2 style="text-align: center; margin-bottom: 20px;">Featured Businesses</h2>
+        <h2 style="text-align: center; margin-bottom: 20px; color:white;">Featured Businesses</h2>
         <div class="business-list">
             {% for business in businesses %}
             <a href="{{ business.website }}" target="_blank" style="text-decoration: none; color: inherit;">
                 <div class="business-card">
                     <!-- Image Section -->
                     <div class="business-image">
-                        <img src="{{ business.image_url }}" alt="{{ business.name }}">
+                        <img 
+                        src="{{ business.image_url|default_if_none:'/static/images/logo.svg' }}" 
+                        alt="{{ business.name }}"
+                        onerror="this.onerror=null;this.src='/static/images/defaultimage.jpeg';"
+                      />                      
+
                     </div>
                     <!-- Text Section -->
                     <div class="business-info">
