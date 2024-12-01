@@ -8,8 +8,12 @@ from .forms import BusinessSearchForm
 
 import json
 
-def homepage(request):
-    return render(request, 'businesses/home.html')
+from .models import Business
+
+def business_home(request):
+    businesses = Business.objects.all()  # Fetch all businesses from the database
+    return render(request, 'businesses/home.html', {'businesses': businesses})
+
 
 def map(request):
     return render(request, 'businesses/map.html')

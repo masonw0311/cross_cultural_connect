@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/overview.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-Piv4xVNRyMGpqkIl9WrfOHbZZvynWoZw1Pp5SvnkE6m9OYyt5P65CZ1FYeNEl9F" crossorigin="anonymous">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav style="
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
+        padding: 15px 20px;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    ">
+        <!-- Left Section: Logo and Title -->
+        <div style="display: flex; align-items: center;">
+            <img src="{% static 'images/logo.svg' %}" alt="Logo" style="width: 35px; height: 35px; margin-right: 10px;">
+            <span style="font-size: 20px; font-weight: bold;">Cross Cultural Connect</span>
+        </div>
+
+        <!-- Right Section: Links and Profile Icon -->
+        <div style="
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-left: auto;
+            flex-shrink: 0;
+        ">
+            <a href="{% url 'overview' %}" style="color: white; text-decoration: none; font-size: 14px;">Overview</a>
+            <a href="{% url 'message_board' %}" style="color: white; text-decoration: none; font-size: 14px;">Message Board</a>
+            <a href="{% url 'business_home' %}" style="color: white; text-decoration: none; font-size: 14px;">Businesses</a>
+            <a href="{% url 'map' %}" style="color: white; text-decoration: none; font-size: 14px;">Map </a>
+            <!-- Profile Icon -->
+            <a href="#" onclick="openProfileModal()" style="
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 40px;
+                height: 40px;
+                background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9);
+                color: white;
+                border-radius: 50%;
+                text-decoration: none;
+            ">
+                <i class="fa-solid fa-user" style="font-size: 18px;"></i>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Grid Layout -->
+    <main class="grid-container">
+        <!-- A: Welcome Section -->
+        <section class="grid-item welcome-header">
+            <h1>Welcome Back, {{ user.username }} 👋</h1>
+            <p>Your personalized community dashboard awaits.</p>
+        </section>
+
+        <!-- B: Community Highlights -->
+        <section class="grid-item highlights">
+            <h2>Community Highlights</h2>
+            <p>Discover the latest events, meetups, and important announcements in your area.</p>
+            <button class="btn-primary">Explore Now</button>
+        </section>
+
+        <!-- C: Local Events -->
+        <section class="grid-item access-card">
+            <h3>Local Events🌆</h3>
+            <p>Upcoming markets and pop-ups.</p>
+            <button class="btn-primary">View Events</button>
+        </section>
+
+        <!-- D: Businesses -->
+        <section class="grid-item access-card">
+            <h3>Businesses🏚️</h3>
+            <p>Support immigrant-owned businesses in your community.</p>
+            <button class="btn-primary" onclick="window.location.href='{% url 'business_home' %}'">Explore Businesses</button>
+        </section>
+
+        <!-- E: Community Messages -->
+        <section class="grid-item access-card">
+            <h3>Community Messages👂</h3>
+            <p>See what others are sharing.</p>
+            <button class="btn-primary" onclick="window.location.href='{% url 'message_board' %}'">View Messages</button>
+        </section>
+
+        <!-- F: Translator Section -->
+        <section class="translator-section">
+            <div class="translator-text">
+                <h2>Translator</h2>
+                <p>Use the translator below to bridge communication gaps in your community.</p>
+            </div>
+            <div class="translator-interface">
+                <textarea id="text-input" placeholder="Enter text to translate..."></textarea>
+                <textarea id="text-output" placeholder="Your translation will appear here..." readonly></textarea>
+            </div>
+            <div class="translator-controls">
+                <select id="language-select">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                    <option value="pt">Portuguese</option>
+                </select>
+                <button id="translate-button">Generate</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Profile Modal -->
+    <div id="profileModal" class="modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 2000; justify-content: center; align-items: center;">
+        <div style="background: white; padding: 20px; border-radius: 10px; width: 300px; text-align: center;">
+            <h3>Account Settings</h3>
+            <p>Are you sure you want to delete your account? This action cannot be undone.</p>
+            <form method="POST" action="{% url 'delete_account' %}">
+                {% csrf_token %}
+                <button type="submit" style="background: red; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Delete Account</button>
+            </form>
+            <button onclick="closeProfileModal()" style="background: gray; color: white; padding: 10px 20px; border: none; border-radius: 5px; margin-top: 10px;">Cancel</button>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        function openProfileModal() {
+            document.getElementById("profileModal").style.display = "flex";
+        }
+
+        function closeProfileModal() {
+            document.getElementById("profileModal").style.display = "none";
+        }
+    </script>
+</body>
+</html>

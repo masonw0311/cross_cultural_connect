@@ -1,74 +1,170 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Business Search Results</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/overview.css' %}">
     <style>
-        #map { height: 400px; width: 100%; }
+        #map {
+            height: 500px;
+            width: 100%;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .search-container {
+            max-width: 800px;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .search-container input[type="text"] {
+            width: 70%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .search-container button {
+            padding: 10px 20px;
+            background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease-in-out;
+        }
+
+        .search-container button:hover {
+            background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
+        }
+
+        .results-header {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
     </style>
 </head>
 <body>
-    <h1>Search Results</h1>
-    
+    <!-- Navbar -->
+    <!-- Navbar -->
+    <nav style="
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
+        padding: 15px 20px;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    ">
+        <!-- Left Section: Logo and Title -->
+        <div style="display: flex; align-items: center;">
+            <img src="{% static 'images/logo.svg' %}" alt="Logo" style="width: 35px; height: 35px; margin-right: 10px;">
+            <span style="font-size: 20px; font-weight: bold;">Cross Cultural Connect</span>
+        </div>
+
+        <!-- Right Section: Links and Profile Icon -->
+        <div style="
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-left: auto;
+            flex-shrink: 0;
+        ">
+            <a href="{% url 'overview' %}" style="color: white; text-decoration: none; font-size: 14px;">Overview</a>
+            <a href="{% url 'message_board' %}" style="color: white; text-decoration: none; font-size: 14px;">Message Board</a>
+            <a href="{% url 'business_home' %}" style="color: white; text-decoration: none; font-size: 14px;">Businesses</a>
+            <a href="{% url 'map' %}" style="color: white; text-decoration: none; font-size: 14px;">Map </a>
+            <!-- Profile Icon -->
+            <a href="#" onclick="openProfileModal()" style="
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 40px;
+                height: 40px;
+                background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9);
+                color: white;
+                border-radius: 50%;
+                text-decoration: none;
+            ">
+                <i class="fa-solid fa-user" style="font-size: 18px;"></i>
+            </a>
+        </div>
+    </nav>
+
+
+    <!-- Header -->
+    <header class="welcome-header">
+        <h1>Search Results</h1>
+        <p>Explore businesses in your area!</p>
+    </header>
+
     <!-- Search Form -->
-    <form method="GET" action="{% url 'search_businesses' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Search</button>
-    </form>
+    <div class="search-container">
+        <form method="GET" action="{% url 'search_businesses' %}">
+            {% csrf_token %}
+            <input type="text" name="query" placeholder="Search for businesses..." value="{{ request.GET.query }}" required>
+            <button type="submit">Search</button>
+        </form>
+    </div>
 
     <!-- Map Container -->
     <div id="map"></div>
 
+    <!-- Safe JSON Script -->
+    <script id="businesses-data" type="application/json">
+        {{ businesses|json_script:"businesses" }}
+    </script>
+
     <!-- Load Google Maps JavaScript API -->
     <script src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&callback=initMap&libraries=places" async defer></script>
 
-
     <script>
-        // Parse businesses from Django template
-        const businesses = JSON.parse('{{ businesses|safe }}');
-        console.log(businesses);
-        const apiKey = '{{ api_key }}';
+        const businesses = JSON.parse(document.getElementById('businesses-data').textContent);
 
         function initMap() {
-            const position = { lat: 28.537988, lng: -81.37874 };
+            const position = { lat: 28.537988, lng: -81.37874 }; // Default center position
             const map = new google.maps.Map(document.getElementById("map"), {
                 zoom: 9,
                 center: position,
-                mapId: "Orlando Map"
-
             });
 
             const infoWindow = new google.maps.InfoWindow();
-            // Add markers for each business
-            businesses.forEach(business => {
-                // Create a DOM element for the marker's content
-                const content = document.createElement("div");
-                content.className = "marker-content";
-                content.innerHTML = `<strong>${business.name}</strong><br>${business.address}`;
 
-                // Create an AdvancedMarkerElement
+            businesses.forEach(business => {
                 const marker = new google.maps.Marker({
                     position: { lat: business.latitude, lng: business.longitude },
                     map: map,
-                    content: content
+                    title: business.name,
                 });
 
                 marker.addListener('mouseover', () => {
-                    infoWindow.setContent(
-                        `<div>
+                    infoWindow.setContent(`
+                        <div class="marker-content">
                             <strong>${business.name}</strong><br>
                             ${business.address}
-                        </div>`
-                    );
+                        </div>
+                    `);
                     infoWindow.open(map, marker);
                 });
 
                 marker.addListener('mouseout', () => {
                     infoWindow.close();
                 });
-
             });
-
         }
     </script>
 </body>

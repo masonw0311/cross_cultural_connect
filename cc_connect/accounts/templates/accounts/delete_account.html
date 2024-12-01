@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Account</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="delete-account-container">
+        <h2>Are you sure you want to delete your account?</h2>
+        <p>This action cannot be undone.</p>
+        <form method="POST" action="{% url 'delete_account' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn-danger">Delete My Account</button>
+            <a href="{% url 'overview' %}" class="btn-secondary">Cancel</a>
+        </form>
+    </div>
+</body>
+</html>

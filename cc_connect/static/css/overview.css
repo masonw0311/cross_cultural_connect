@@ -251,3 +251,49 @@ body {
 .translator-controls button:hover {
     background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
 }
+/* Business Section */
+.business-section {
+    text-align: center;
+    padding: 30px 0;
+}
+
+.business-section h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.business-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.business-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.business-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.business-card h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.business-card p {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #555;
+}

@@ -77,7 +77,7 @@ def process_zip(request):
     return render(request, 'account_home.html')
 
 def welcome_view(request):
-    return render(request, 'accounts/welcome.html', {'user': request.user})
+    return render(request, 'accounts/overview.html', {'user': request.user})
 
 def overview_view(request):
     return render(request, 'accounts/overview.html')
@@ -124,3 +124,11 @@ def translate_text(request):
     else:
         return JsonResponse({"error": "Invalid request method."}, status=400)
 
+@login_required
+def delete_account(request):
+    if request.method == "POST":
+        user = request.user
+        user.delete()
+        messages.success(request, "Your account has been successfully deleted.")
+        return redirect('login')  # Redirect to the login page after deletion
+    return render(request, 'delete_account.html')  # Renders a confirmation pag
