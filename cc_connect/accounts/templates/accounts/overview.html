@@ -62,7 +62,6 @@
                 <button id="translate-button">Generate</button>
             </div>
         </section>
-        
     </main>
 
     <!-- Profile Modal -->
@@ -90,34 +89,3 @@
     </script>
 </body>
 </html>
-<script>
-    document.getElementById("translate-button").addEventListener("click", function () {
-        const inputText = document.getElementById("text-input").value; // Get the input text
-        const selectedLanguage = document.getElementById("language-select").value; // Get the selected language
-
-        if (inputText.trim() === "") {
-            document.getElementById("text-output").value = "Please enter text to translate.";
-            return;
-        }
-
-        // Mock translation logic (replace this with an actual API call if needed)
-        let translatedText;
-        switch (selectedLanguage) {
-            case "es":
-                translatedText = inputText + " (translated to Spanish)";
-                break;
-            case "pt":
-                translatedText = inputText + " (translated to Portuguese)";
-                break;
-            case "en":
-            default:
-                translatedText = inputText; // English stays the same
-                break;
-        }
-
-        // Update the output box
-        document.getElementById("text-output").value = translatedText;
-    });
-</script>
-
-

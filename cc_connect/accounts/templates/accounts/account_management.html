@@ -3,125 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
+    <title>Account Settings</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="{% static 'css/overview.css' %}">
     <style>
-        /* Define the grid container */
-.grid-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Two columns */
-    grid-template-rows: auto; /* Automatically sized rows */
-    grid-gap: 20px; /* Space between grid items */
-    grid-template-areas:
-        "welcome update-username"
-        "update-country update-password"
-        "delete-account delete-account";
-    padding: 20px;
-}
+        /* Isolate styling for account settings */
+        .settings-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
 
-/* Style for each section */
-.access-card {
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
+        /* Header section */
+        .settings-header {
+            background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
 
-.welcome-header {
-    grid-area: welcome;
-    background-color: #e0f7fa;
-    padding: 20px;
-    border-radius: 8px;
-}
+        .settings-header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
 
-/* Add spacing to form elements */
-.form-group {
-    margin-bottom: 15px;
-}
+        .settings-header p {
+            margin: 5px 0;
+            font-size: 16px;
+        }
 
-/* Button Styling */
-.btn-danger {
-    background-color: red;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
+        /* Content sections */
+        .settings-section {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
 
-.btn-primary {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
+        .settings-card {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
 
-h1 {
-    font-size: 24px;
-    margin-bottom: 10px;
-}
+        .settings-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
 
+        .settings-card h2 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .settings-card p {
+            font-size: 14px;
+            color: #555;
+        }
+
+        /* Form inputs */
+        .form-group input {
+            width: 80%; /* Adjust the width to make it smaller */
+            max-width: 300px; /* Limit the maximum width for larger screens */
+            padding: 8px; /* Reduce the padding */
+            font-size: 14px; /* Keep the font size consistent */
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            transition: border-color 0.3s;
+        }
+        
+        /* Focus effect for input fields */
+        .form-group input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+        
+
+        /* Buttons */
+        .btn {
+            padding: 10px 20px;
+            font-size: 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9);
+            color: white;
+            transition: background 0.3s ease-in-out;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
+        }
+
+        .btn-danger {
+            background: red;
+            color: white;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .btn-danger:hover {
+            opacity: 0.8;
+        }
     </style>
 </head>
-
 <body>
     <!-- Navbar -->
     {% include 'shared/navbar.html' %}
-    <!-- Main Grid Layout -->
-    <div class="grid-container">
-        <!-- User Information Section -->
-        <section class="welcome-header" style="grid-area: welcome;">
+
+    <!-- Account Settings Page -->
+    <div class="settings-container">
+        <!-- Header Section -->
+        <div class="settings-header">
             <h1>Account Settings</h1>
-            <p><strong>Username:</strong> {{ user.username }}</p>
-            <p><strong>Country of Origin:</strong> {{ user.country_of_origin }}</p>
-        </section>
+            <p>Manage your personal information and account preferences.</p>
+        </div>
 
-        <section class="access-card" style="grid-area: update-username;">
-            <h1>Update Username</h1>
-            <form method="POST">
-                {% csrf_token %}
-                <div class="form-group">
-                    {{ account_form.as_p }}
-                </div>
-                <button type="submit" class="btn btn-primary">Save Changes</button>
-            </form>
-        </section>
-
-        <section class="access-card" style="grid-area: update-country;">
-            <h1>Change Country of Origin</h1>
-            <form method="POST">
-                {% csrf_token %}
-                <div class="form-group">
-                    {{ profile_form.as_p }}
-                </div>
-                <button type="submit" class="btn btn-primary">Save Changes</button>
-            </form>
-        </section>
-
-        <section class="access-card" style="grid-area: update-password;">
-            <h1>Change Password</h1>
-            <div class="form-group">
-                {{ password_form.as_p }}
+        <!-- Main Settings Section -->
+        <div class="settings-section">
+            <!-- Update Username -->
+            <div class="settings-card">
+                <h2>Update Username</h2>
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{ account_form.username }}
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </form>
             </div>
-            <button type="submit" class="btn btn-primary">Save Changes</button>
-        </form>
-        </section>
 
-        <!-- Delete Account Section -->
-        <section class="access-card" style="grid-area: delete-account;">
-            <h1>Delete Account</h1>
-            <p>If you delete your account, all your data will be permanently removed. This action cannot be undone.</p>
-            <form method="post" action="">
-                {% csrf_token %}
-                <button type="submit" name="delete_account" class="btn-danger">Delete Account</button>
-            </form>
-        </section>
+            <!-- Update Country of Origin -->
+            <div class="settings-card">
+                <h2>Change Country </h2>
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{ profile_form.country_of_origin }}
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="settings-section">
+            <!-- Update Password -->
+            <div class="settings-card">
+                <h2>Change Password</h2>
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{ password_form.as_p }}
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </form>
+            </div>
+
+            <!-- Delete Account -->
+            <div class="settings-card" >
+                <h2>Delete Account</h2>
+                <p>Once deleted, your account and data cannot be recovered.</p>
+                <form method="POST">
+                    {% csrf_token %}
+                    <button type="submit" name="delete_account" class="btn btn-danger">Delete Account</button>
+                </form>
+            </div>
+        </div>
     </div>
-
 </body>
 </html>

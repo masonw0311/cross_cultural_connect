@@ -174,7 +174,7 @@ body {
     backdrop-filter: blur(10px);
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 20px auto;
     padding: 30px;
     display: flex;
@@ -210,7 +210,7 @@ body {
     width: 48%;
     height: 200px;
     padding: 15px;
-    font-size: 50px;
+    font-size: 18px;
     border: 1px solid #ddd;
     border-radius: 10px;
     resize: none;
@@ -306,4 +306,120 @@ body {
 
 .how-it-works a.btn-primary:hover {
     background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
+}
+/* Account Settings Page */
+.account-settings-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: 20px;
+}
+
+/* Welcome Header for Account Settings */
+.account-settings-header {
+    grid-column: span 2;
+    background: linear-gradient(to right, #12c2e9, #c471ed);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.account-settings-header h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.account-settings-header p {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+/* Access Cards for Account Settings */
+.account-settings-card {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center;
+}
+
+.account-settings-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.account-settings-card h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.account-settings-card p {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Form Styling for Account Settings */
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Button Styling */
+.btn-primary {
+    background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
+}
+
+.btn-danger {
+    background: red;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.btn-danger:hover {
+    opacity: 0.8;
+}
+
+/* Delete Account Section */
+.delete-account-card {
+    background: rgba(255, 0, 0, 0.1);
+    border-left: 4px solid red;
 }
