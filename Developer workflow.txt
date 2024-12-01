@@ -37,6 +37,7 @@ d. Install the required dependencies from requirements.txt:
 
 e. Set up google authorization
         > download "service-accounts-key.json"
+                (see group chat for this file. It is very bad to put our api secret key on a public github)
         $ export GOOGLE_APPLICATION_CREDENTIALS="/path/to/service-accounts-key.json/"
 
 
