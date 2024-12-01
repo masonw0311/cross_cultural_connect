@@ -35,6 +35,10 @@ c. activate environment
 d. Install the required dependencies from requirements.txt:
         $ pip install -r requirements.txt
 
+e. Set up google authorization
+        > download "service-accounts-key.json"
+        $ export GOOGLE_APPLICATION_CREDENTIALS="/path/to/service-accounts-key.json/"
+
 
 
 III. Set up and verify Django project
@@ -75,3 +79,6 @@ a. Note any environement changes, update requirements.txt with
 
 
         ( let team know if you do this so we can update environments)
+
+b. If there is a google authorization error
+
