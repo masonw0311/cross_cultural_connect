@@ -33,13 +33,13 @@
         <section class="access-card" style="grid-area: businesses;">
             <h3>Businesses</h3>
             <p>Support immigrant-owned businesses in your community.</p>
-            <button class="btn-primary">Explore Businesses</button>
+            <a href="{% url 'business_home' %}" class="btn-primary">Explore Businesses</a>
         </section>
      
         <section class="access-card" style="grid-area: community-messages;">
             <h3>Community Messages</h3>
             <p>See what others are sharing.</p>
-            <button class="btn-primary">View Messages</button>
+            <a href="{% url 'message_board' %}" class="btn-primary">View Message Board</a>
         </section>
      </div>
      
