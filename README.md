@@ -9,9 +9,6 @@ TODO:
         - testing plan
 
 
-- add privacy policy in account creation page
-    - Discuss our privacy and security policy
-
 Mason
 - Welcome page
     - community highlights
@@ -30,7 +27,6 @@ Edward
     - test username change
     - test account deletion
   
-
 - message board
     - message deletion after x days
  
@@ -41,5 +37,9 @@ Edward
 - footer in each page
     - fake socials?
 
-- login required 
+- login required
+
+- add privacy policy in account creation page
+    - Discuss our privacy and security policy
+
 
