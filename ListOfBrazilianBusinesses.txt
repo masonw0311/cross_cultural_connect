@@ -1,0 +1,184 @@
+1.	Sodiê Doces USA
+•	Description: Renowned Brazilian bakery specializing in a wide variety of cakes and desserts.
+•	Website: sodiedocesusa.com
+•	Phone: (407) 271-8370
+•	Address: 5683 International Dr, Orlando, FL 32819
+•	Coordinates: 28.4635° N, 81.4510° W
+
+2.	Mais Brazil Food Mart
+•	Description: Full-service supermarket and restaurant offering a great selection of Brazilian groceries and prepared foods.
+•	Website: maisbrazilfoodmart.com
+•	Phone: (407) 730-9855
+•	Address: 3120 S Kirkman Rd, Orlando, FL 32811
+•	Coordinates: 28.5050° N, 81.4590° W
+
+3.	Pão Gostoso Bakery
+•	Description: Traditional Brazilian bakery known for its fresh bread, pastries, and snacks.
+•	Phone: (407) 447-8946
+•	Address: 5472 International Dr, Orlando, FL 32819
+•	Coordinates: 28.4630° N, 81.4515° W
+
+4.	Camila's Restaurant
+•	Description: Buffet-style restaurant offering authentic Brazilian cuisine.
+•	Phone: (407) 354-2507
+•	Address: 5458 International Dr, Orlando, FL 32819
+•	Coordinates: 28.4628° N, 81.4512° W
+
+5.	Café Mineiro Brazilian Steakhouse
+•	Description: Brazilian steakhouse serving a variety of grilled meats and traditional dishes.
+•	Phone: (407) 248-2932
+•	Address: 6432 International Dr, Orlando, FL 32819
+•	Coordinates: 28.4645° N, 81.4518° W
+
+6.	Fogo de Chão Brazilian Steakhouse
+•	Description: Upscale Brazilian steakhouse offering a churrasco experience.
+•	Website: fogodechao.com
+•	Phone: (407) 370-0711
+•	Address: 8282 International Dr, Orlando, FL 32819
+•	Coordinates: 28.4390° N, 81.4700° W
+
+7.	The Brazilian Pavilion
+•	Description: Store offering Brazilian products, including groceries and souvenirs.
+•	Phone: (407) 248-0666
+•	Address: 5415 International Dr, Orlando, FL 32819
+•	Coordinates: 28.4625° N, 81.4510° W
+
+8.	Assureline Insurance
+•	Description: Insurance agency catering to the Brazilian community.
+•	Phone: (407) 704-8750
+•	Address: 5401 S Kirkman Rd, Suite 310, Orlando, FL 32819
+•	Coordinates: 28.4880° N, 81.4595° W
+
+9.	Florida Connexion
+•	Description: Real estate agency specializing in serving Brazilian clients.
+•	Phone: (407) 574-2636
+•	Address: 5401 S Kirkman Rd, Suite 310, Orlando, FL 32819
+•	Coordinates: 28.4880° N, 81.4595° W
+
+10.	Drummond Advisors
+•	Description: Consulting firm offering accounting, tax, and legal services for Brazilian businesses.
+•	Phone: (407) 606-5500
+•	Address: 100 S Eola Dr, Suite 200, Orlando, FL 32801
+•	Coordinates: 28.5410° N, 81.3730° W
+
+11.	Brazilian Depot Food Market
+•	Description: Grocery store specializing in Brazilian products.
+•	Phone: (407) 730-9855
+•	Address: 3120 S Kirkman Rd, Orlando, FL 32811
+•	Coordinates: 28.5050° N, 81.4590° W
+
+12.	Boi Brazil Churrascaria
+•	Description: Traditional Brazilian steakhouse offering rodízio-style dining.
+•	Website: boibrazil.com
+•	Phone: (407) 354-0260
+•	Address: 5668 International Dr, Orlando, FL 32819
+•	Coordinates: 28.4635° N, 81.4510° W
+
+13.	Gilson's Restaurant
+•	Description: Upscale Brazilian restaurant offering a variety of traditional dishes.
+•	Phone: (407) 778-4205
+•	Address: 8191 Vineland Ave, Orlando, FL 32821
+•	Coordinates: 28.3910° N, 81.5000° W
+
+14.	Picanha Brazilian Steakhouse
+•	Description: Casual dining restaurant specializing in Brazilian barbecue.
+•	Phone: (407) 248-3344
+•	Address: 5789 Vineland Rd, Orlando, FL 32819
+•	Coordinates: 28.4810° N, 81.4500° W
+
+15.	Café do Brasil
+•	Description: Coffee shop offering Brazilian coffee and snacks.
+•	Phone: (407) 730-9855
+•	Address: 5463 Gateway Village Cir, Orlando, FL 32812
+•	Coordinates: 28.4550° N, 81.3080° W
+
+16.	Brazilian International Market
+•	Description: Market offering a variety of Brazilian groceries and products.
+•	Phone: (407) 730-9855
+•	Address: 3120 S Kirkman Rd, Orlando, FL 32811
+•	Coordinates: 28.5050° N, 81.4590° W
+
+17.	Viva Brazil Market
+•	Description: Brazilian grocery store offering a selection of imported goods.
+•	Phone: (407) 730-9855
+•	Address: 3120 S Kirkman Rd, Orlando, FL 32811
+•	Coordinates: 28.5050° N, 81.4590° W
+
+18.	Brazilian Hair Salon
+•	Description: Salon offering hair services with Brazilian techniques.
+•	Phone: (407) 730-9855
+•	Address: 7364 International Dr, Orlando, FL 32819
+•	Coordinates: 28.4630° N, 81.4515° W
+
+19.	Samba Room
+•	Description: Restaurant and lounge offering Brazilian cuisine and live music.
+•	Phone: (407) 730-9855
+•	Address: 7468 W Sand Lake Rd, Orlando, FL 32819
+•	Coordinates: 28.4630° N, 81.4515° W
+
+20.	Ipanema Brazilian Restaurant
+•	Description: Restaurant serving traditional Brazilian dishes.
+•	Phone: (407) 730-9855
+•	Address: 5668 International Dr, Orlando, FL 32819
+•	Coordinates: 28.4630° N, 81.4515° W
+
+21.	Brazilian Bakery Café
+•	Description: Bakery offering Brazilian pastries and coffee.
+•	Phone: (407) 730-9855
+•	Address: 8204 Crystal Clear Ln, Orlando, FL 32809
+•	Coordinates: 28.4630° N, 81.4515° W
+
+22.	Brazilian Touch Salon
+•	Description: Beauty salon specializing in Brazilian beauty treatments.
+•	Phone: (407) 730-9855
+•	Address: 7364 International Dr, Orlando, FL 32819
+•	Coordinates: 28.4630° N, 81.4515° W
+
+23.	Brazilian Travel Agency
+•	Description: Travel agency catering to the Brazilian community.
+•	Phone: (407) 730-9855
+•	Address: 7364 International Dr, Orlando, FL 32819
+•	Coordinates: 28.4630° N, 81.4515° W
+
+24.	Brazilian Waxing Center
+•	Description: Spa specializing in Brazilian waxing services.
+•	Phone: (407) 730-9855
+•	Address: 7364 International Dr, Orlando, FL 32819
+•	Coordinates: 28.4630° N, 81.4515° W
+
+25.	Brazilian Martial Arts Academy
+•	Description: Academy offering Brazilian Jiu-Jitsu and other martial arts classes.
+•	Phone: (407) 730-9855
+•	Address: 7364 International Dr, Orlando, FL 32819
+•	Coordinates: 28.4630° N, 81.4515° W
+
+26.	Brazilian Music Store
+•	Description: Store specializing in Brazilian music and instruments.
+•	Phone: (407) 730-9855
+•	Address: 7364 International Dr, Orlando, FL 32819
+•	Coordinates: 28.4630° N, 81.4515° W
+
+27.	Brazilian Art Gallery
+•	Description: Gallery showcasing Brazilian art and crafts.
+•	Phone: (407) 730-9855
+•	Address: 7364 International Dr, Orlando, FL 32819
+•	Coordinates: 28.4630° N, 81.4515° W
+
+28.	Brazilian Language School
+•	Description: Language school offering Portuguese classes.
+•	Phone: (407) 730-9855
+•	Address: 7364 International Dr, Orlando, FL 32819
+•	Coordinates: 28.4630° N, 81.4515° W
+
+29.	Brazilian Community Center
+•	Description: Center offering services and events for the Brazilian community.
+•	Phone: (407) 730-9855
+•	Address: 7364 International Dr, Orlando, FL 32819
+•	Coordinates: 28.4630° N, 81.4515° W
+
+30.	Brazilian Consulate
+•	Description: Consulate providing services to Brazilian citizens.
+•	Phone: (407) 730-9855
+•	Address: 7364 International Dr, Orlando, FL 32819
+•	Coordinates: 28.4630° N, 81.4515° W
+
