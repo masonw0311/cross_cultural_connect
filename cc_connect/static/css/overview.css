@@ -423,3 +423,43 @@ body {
     background: rgba(255, 0, 0, 0.1);
     border-left: 4px solid red;
 }
+
+/* Footer Styling */
+.site-footer {
+    background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9);
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 20px;
+    color: white;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.social-icons a {
+    font-size: 36px; /* Increased font size */
+    margin: 0 15px; /* Added extra spacing */
+    color: white;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #cfe2ff;
+}
+
+/* About Us Icon Styling */
+.about-us-icon {
+    font-size: 36px; /* Increased font size */
+    color: white;
+    transition: color 0.3s ease;
+    margin-top: 10px; /* Adjust spacing between icons and "About Us" */
+}
+
+.about-us-icon:hover {
+    color: #cfe2ff;
+}

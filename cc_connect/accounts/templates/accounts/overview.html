@@ -7,6 +7,7 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/overview.css' %}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    
 </head>
 <body>
     <!-- Navbar -->
@@ -99,10 +100,10 @@
             let translatedText;
             switch (selectedLanguage) {
                 case "es":
-                    translatedText = inputText + " (translated to Spanish)";
+                    translatedText = inputText 
                     break;
                 case "pt":
-                    translatedText = inputText + " (translated to Portuguese)";
+                    translatedText = inputText 
                     break;
                 case "en":
                 default:
@@ -113,7 +114,7 @@
             document.getElementById("text-output").value = translatedText;
         });
     </script>
-    
+    {% include 'shared/footer.html' %}
 </body>
 </html>
 

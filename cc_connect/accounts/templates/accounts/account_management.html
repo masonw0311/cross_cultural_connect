@@ -7,7 +7,7 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/overview.css' %}">
     <style>
-        /* Isolate styling for account settings */
+        /* Styles */
         .settings-container {
             max-width: 1000px;
             margin: 40px auto;
@@ -20,7 +20,6 @@
             gap: 20px;
         }
 
-        /* Header section */
         .settings-header {
             background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
             color: white;
@@ -29,17 +28,6 @@
             text-align: center;
         }
 
-        .settings-header h1 {
-            margin: 0;
-            font-size: 28px;
-        }
-
-        .settings-header p {
-            margin: 5px 0;
-            font-size: 16px;
-        }
-
-        /* Content sections */
         .settings-section {
             display: flex;
             justify-content: space-between;
@@ -61,37 +49,16 @@
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .settings-card h2 {
-            font-size: 20px;
-            margin-bottom: 15px;
-            color: #333;
-        }
-
-        .settings-card p {
-            font-size: 14px;
-            color: #555;
-        }
-
-        /* Form inputs */
         .form-group input {
-            width: 80%; /* Adjust the width to make it smaller */
-            max-width: 300px; /* Limit the maximum width for larger screens */
-            padding: 8px; /* Reduce the padding */
-            font-size: 14px; /* Keep the font size consistent */
+            width: 80%;
+            max-width: 300px;
+            padding: 8px;
+            font-size: 14px;
             border: 1px solid #ddd;
             border-radius: 5px;
             margin-bottom: 10px;
-            transition: border-color 0.3s;
         }
-        
-        /* Focus effect for input fields */
-        .form-group input:focus {
-            border-color: #007bff;
-            outline: none;
-        }
-        
 
-        /* Buttons */
         .btn {
             padding: 10px 20px;
             font-size: 14px;
@@ -119,7 +86,44 @@
         .btn-danger:hover {
             opacity: 0.8;
         }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 300px;
+        }
+
+        .modal-content button {
+            margin: 10px 5px;
+        }
     </style>
+
+    <script>
+        // Modal toggle functions
+        function openProfileModal() {
+            document.getElementById("profileModal").style.display = "flex";
+        }
+
+        function closeProfileModal() {
+            document.getElementById("profileModal").style.display = "none";
+        }
+    </script>
 </head>
 <body>
     <!-- Navbar -->
@@ -127,15 +131,12 @@
 
     <!-- Account Settings Page -->
     <div class="settings-container">
-        <!-- Header Section -->
         <div class="settings-header">
             <h1>Account Settings</h1>
             <p>Manage your personal information and account preferences.</p>
         </div>
 
-        <!-- Main Settings Section -->
         <div class="settings-section">
-            <!-- Update Username -->
             <div class="settings-card">
                 <h2>Update Username</h2>
                 <form method="POST">
@@ -147,9 +148,8 @@
                 </form>
             </div>
 
-            <!-- Update Country of Origin -->
             <div class="settings-card">
-                <h2>Change Country </h2>
+                <h2>Change Country</h2>
                 <form method="POST">
                     {% csrf_token %}
                     <div class="form-group">
@@ -161,7 +161,6 @@
         </div>
 
         <div class="settings-section">
-            <!-- Update Password -->
             <div class="settings-card">
                 <h2>Change Password</h2>
                 <form method="POST">
@@ -173,15 +172,24 @@
                 </form>
             </div>
 
-            <!-- Delete Account -->
-            <div class="settings-card" >
+            <div class="settings-card">
                 <h2>Delete Account</h2>
                 <p>Once deleted, your account and data cannot be recovered.</p>
-                <form method="POST">
-                    {% csrf_token %}
-                    <button type="submit" name="delete_account" class="btn btn-danger">Delete Account</button>
-                </form>
+                <button onclick="openProfileModal()" class="btn btn-danger">Delete Account</button>
             </div>
+        </div>
+    </div>
+
+    <!-- Profile Modal -->
+    <div id="profileModal" class="modal">
+        <div class="modal-content">
+            <h3>Account Settings</h3>
+            <p>Are you sure you want to delete your account? This action cannot be undone.</p>
+            <form method="POST" action="{% url 'delete_account' %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+            <button onclick="closeProfileModal()" class="btn btn-primary">Cancel</button>
         </div>
     </div>
 </body>
