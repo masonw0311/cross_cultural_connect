@@ -13,17 +13,34 @@ TODO:
 - add privacy policy in account creation page
     - Discuss our privacy and security policy
 
-- account settings page
-    - test username change
-    - test account deletion
-
+Mason
 - Welcome page
     - community highlights
     - local events
+ 
+- fix translator
+
+
       
 - Add to database with businesses, resources, embassys, etc
 
 
+Edward 
+
+- account settings page
+    - test username change
+    - test account deletion
+  
+
 - message board
     - message deletion after x days
+ 
+- account confirmation / username taken
+
+- remove search -> search results only
+
+- footer in each page
+    - fake socials?
+
+- login required 
 
