@@ -6,7 +6,6 @@ TODO:
     -  Design Phase
         - E-R diagram
         - Use Case Diagram
-        - Website flowchart??
         - testing plan
 
 
