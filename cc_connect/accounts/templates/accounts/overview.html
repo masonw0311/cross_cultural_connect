@@ -89,30 +89,49 @@
         }
     </script>
     <script>
-        document.getElementById("translate-button").addEventListener("click", function () {
-            const inputText = document.getElementById("text-input").value; // Get the input text
-            const selectedLanguage = document.getElementById("language-select").value; // Get the selected language
-            if (inputText.trim() === "") {
-                document.getElementById("text-output").value = "Please enter text to translate.";
-                return;
-            }
-            // Mock translation logic (replace this with an actual API call if needed)
-            let translatedText;
-            switch (selectedLanguage) {
-                case "es":
-                    translatedText = inputText 
-                    break;
-                case "pt":
-                    translatedText = inputText 
-                    break;
-                case "en":
-                default:
-                    translatedText = inputText; // English stays the same
-                    break;
-            }
-            // Update the output box
-            document.getElementById("text-output").value = translatedText;
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("translate-button").addEventListener("click", function () {
+                const inputText = document.getElementById("text-input").value.trim(); // Trim whitespace
+                const selectedLanguage = document.getElementById("language-select").value; // Get the selected language
+        
+                // Handle empty input
+                if (!inputText) {
+                    document.getElementById("text-output").value = "Please enter text to translate.";
+                    return;
+                }
+        
+                // Call Google Translate API
+                const apiKey = "AIzaSyDONSPaNs1RVDJlgl1Oj6_pWMYnrYc1OB4"; 
+                const apiUrl = `https://translation.googleapis.com/language/translate/v2?key=${apiKey}`;
+        
+                fetch(apiUrl, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        q: inputText,
+                        target: selectedLanguage,
+                    }),
+                })
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error("Error with the translation request");
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    const translatedText = data.data.translations[0].translatedText;
+                    document.getElementById("text-output").value = translatedText;
+                })
+                .catch((error) => {
+                    console.error("Translation Error:", error);
+                    document.getElementById("text-output").value = "An error occurred. Please try again.";
+                });
+            });
         });
+        
+        
     </script>
     {% include 'shared/footer.html' %}
 </body>
