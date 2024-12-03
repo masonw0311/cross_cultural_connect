@@ -153,12 +153,14 @@ def account_management(request):
         if account_form.is_valid():
             account_form.save()
             messages.success(request, "Your username has been updated.")
+            return redirect('account_management')
 
         profile_form = ProfileUpdateForm(request.POST)
         if profile_form.is_valid():
             user.country_of_origin = profile_form.cleaned_data['country_of_origin']
             user.save()
             messages.success(request, "Your country of origin has been updated.")
+            return redirect('account_management')
 
         password_form = PasswordChangeForm(user, request.POST)
         if password_form.is_valid():
@@ -166,6 +168,7 @@ def account_management(request):
             user.save()
             update_session_auth_hash(request, user)  # Keeps the user logged in after changing password
             messages.success(request, "Your password has been updated.")
+            return redirect('account_management')
 
     else:        
         account_form = AccountUpdateForm(instance=request.user)        

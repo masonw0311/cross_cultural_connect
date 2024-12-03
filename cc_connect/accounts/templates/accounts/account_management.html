@@ -112,6 +112,70 @@
         .modal-content button {
             margin: 10px 5px;
         }
+
+        /* Error message styles */
+        .error-message {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+            text-align: left;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .form-group input, 
+        .form-group select {
+            margin-bottom: 5px;
+        }
+
+        /* Style for Django form errors */
+        .form-group .errorlist {
+            color: red;
+            list-style-type: none;
+            padding: 0;
+            margin: 0 0 10px 0;
+            font-size: 12px;
+        }
+
+        .fixed-alert-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+        }
+
+        .alert-box {
+            width: 80%;
+            max-width: 600px;
+            padding: 15px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .alert-box.error-alert {
+            background-color: #f44336; /* Red color for error messages */
+            color: white;
+        }
+
+        .alert-message {
+            flex: 1;
+        }
+
     </style>
 
     <script>
@@ -123,11 +187,24 @@
         function closeProfileModal() {
             document.getElementById("profileModal").style.display = "none";
         }
+
     </script>
 </head>
 <body>
     <!-- Navbar -->
     {% include 'shared/navbar.html' %}
+
+    <!-- Alert Messages -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="fixed-alert-container">
+                <div class="alert-box {% if message.tags %}{{ message.tags }}-alert{% endif %}">
+                    <div class="alert-message">{{ message }}</div>
+                    <button type="button" class="close-btn" onclick="this.parentElement.parentElement.style.display='none';">&times;</button>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
 
     <!-- Account Settings Page -->
     <div class="settings-container">
@@ -144,8 +221,15 @@
                     {% csrf_token %}
                     <div class="form-group">
                         {{ account_form.username }}
+                        {% if account_form.username.errors %}
+                            <div class="errorlist">
+                                {% for error in account_form.username.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
                     </div>
-                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <button type="submit" name="update-username" class="btn btn-primary">Save Changes</button>
                 </form>
             </div>
 
@@ -155,28 +239,73 @@
                     {% csrf_token %}
                     <div class="form-group">
                         {{ profile_form.country_of_origin }}
+                        {% if profile_form.country_of_origin.errors %}
+                            <div class="errorlist">
+                                {% for error in profile_form.country_of_origin.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
                     </div>
-                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <button type="submit" name="update-country" class="btn btn-primary">Save Changes</button>
                 </form>
             </div>
         </div>
 
-        <div class="settings-section">
             <div class="settings-card">
                 <h2>Change Password</h2>
-                <form method="POST">
+                <form method="POST" action="{% url 'account_management' %}">
                     {% csrf_token %}
+                    <input type="hidden" name="form_type" value="password_form">
                     <div class="form-group">
-                        {{ password_form.as_p }}
+                        <label for="{{ password_form.old_password.id_for_label }}">Current Password</label>
+                        {{ password_form.old_password }}
+                        {% if password_form.old_password.errors %}
+                            <div class="errorlist">
+                                {% for error in password_form.old_password.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                        <label for="{{ password_form.new_password1.id_for_label }}">New Password</label>
+                        {{ password_form.new_password1 }}
+                        {% if password_form.new_password1.errors %}
+                            <div class="errorlist">
+                                {% for error in password_form.new_password1.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                        <label for="{{ password_form.new_password2.id_for_label }}">Confirm New Password</label>
+                        {{ password_form.new_password2 }}
+                        {% if password_form.new_password2.errors %}
+                            <div class="errorlist">
+                                {% for error in password_form.new_password2.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        <div class="password-guidelines">
+                            <small>Password Guidelines:</small>
+                            <ul>
+                                <li>At least 8 characters long</li>
+                                <li>Must contain at least one uppercase letter</li>
+                                <li>Must contain at least one lowercase letter</li>
+                                <li>Must contain at least one number</li>
+                                <li>Must contain at least one special character</li>
+                            </ul>
+                        </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <button type="submit" name="change-password" class="btn btn-primary">Change Password</button>
                 </form>
             </div>
 
             <div class="settings-card">
                 <h2>Delete Account</h2>
                 <p>Once deleted, your account and data cannot be recovered.</p>
-                <button onclick="openProfileModal()" class="btn btn-danger">Delete Account</button>
+                <button onclick="openProfileModal()" name="delete-account" class="btn btn-danger">Delete Account</button>
             </div>
         </div>
     </div>
@@ -190,7 +319,7 @@
                 {% csrf_token %}
                 <button type="submit" class="btn btn-danger">Delete</button>
             </form>
-            <button onclick="closeProfileModal()" class="btn btn-primary">Cancel</button>
+            <button onclick="closeProfileModal()" name="confirm-delete" class="btn btn-primary">Cancel</button>
         </div>
     </div>
 </body>
