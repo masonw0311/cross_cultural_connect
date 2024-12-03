@@ -10,13 +10,6 @@ TODO:
 
 
 Mason
-- Welcome page
-    - community highlights
-    - local events
- 
-- fix translator
-
-
       
 - Add to database with businesses, resources, embassys, etc
 
