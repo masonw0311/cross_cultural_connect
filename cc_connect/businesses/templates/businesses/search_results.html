@@ -58,7 +58,7 @@
 
     <!-- Search Form -->
     <div class="search-container">
-        <form method="GET" action="{% url 'search_businesses' %}">
+        <form method="GET" action="{% url 'search_results' %}">
             {% csrf_token %}
             <input type="text" name="query" placeholder="Search for businesses..." value="{{ request.GET.query }}" required>
             <button type="submit">Search</button>

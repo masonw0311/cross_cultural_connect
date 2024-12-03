@@ -33,38 +33,38 @@ def map(request):
 
 
 
-@login_required
-def search(request):
-    username = request.session.get('username', 'Guest')  # Retrieve username from session
-    api_key = settings.GOOGLE_API_KEY
-    if request.method == 'POST':
-        zip_code = request.POST.get('zipcode')
-        business_type = request.POST.get('business_type')
-        country = request.POST.get('country')
+# @login_required
+# def search(request):
+#     username = request.session.get('username', 'Guest')  # Retrieve username from session
+#     api_key = settings.GOOGLE_API_KEY
+#     if request.method == 'POST':
+#         zip_code = request.POST.get('zipcode')
+#         business_type = request.POST.get('business_type')
+#         country = request.POST.get('country')
 
-        businesses = Business.objects.filter(country__icontains=country)
+#         businesses = Business.objects.filter(country__icontains=country)
 
-        if zip_code:
-            businesses = businesses.filter(address__icontains=zip_code)
+#         if zip_code:
+#             businesses = businesses.filter(address__icontains=zip_code)
 
-        if business_type and business_type.lower() != 'all':
-            businesses = businesses.filter(business_type__icontains=business_type)
+#         if business_type and business_type.lower() != 'all':
+#             businesses = businesses.filter(business_type__icontains=business_type)
 
-        businesses_json = json.dumps(
-            list(businesses.values('name', 'business_type', 'country', 'address', 'latitude', 'longitude','image_url')),
-            cls=DjangoJSONEncoder,
-            default=str
-        )
+#         businesses_json = json.dumps(
+#             list(businesses.values('name', 'business_type', 'country', 'address', 'latitude', 'longitude','image_url')),
+#             cls=DjangoJSONEncoder,
+#             default=str
+#         )
 
-        form = BusinessSearchForm(request.GET or None)
+#         form = BusinessSearchForm(request.GET or None)
 
-        return render(request, 'businesses/search_results.html', {
-            'form': form,
-            'businesses': businesses_json,
-            'api_key': api_key,
-        })
+#         return render(request, 'businesses/search_results.html', {
+#             'form': form,
+#             'businesses': businesses_json,
+#             'api_key': api_key,
+#         })
 
-    return render(request, 'businesses/search.html')
+#     return render(request, 'businesses/search.html')
 
 @login_required
 def search_businesses(request):
