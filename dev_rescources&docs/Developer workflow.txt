@@ -81,5 +81,6 @@ a. Note any environement changes, update requirements.txt with
 
         ( let team know if you do this so we can update environments)
 
-b. If there is a google authorization error
+b. If there is a google authorization error see entry in Bugs and Issues
 
+c. To set up scheduled database maintenance, view cron.txt document
