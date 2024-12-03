@@ -19,9 +19,6 @@ Edward
 - account settings page
     - test username change
     - test account deletion
-  
-- message board
-    - message deletion after x days
  
 - account confirmation / username taken
 
