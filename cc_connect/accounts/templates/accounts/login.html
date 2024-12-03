@@ -8,7 +8,29 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
+        {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == 'success' %}
+            <div class="fixed-alert-container">
+                <div class="alert-box success-alert">
+                    <div class="alert-message">{{ message }}</div>
+                    <button type="button" class="close-btn" onclick="this.parentElement.parentElement.style.display='none';">&times;</button>
+                </div>
+            </div>
+            {% endif %}
+            {% if message.tags == 'error' %}
+                <div class="fixed-alert-container">
+                    <div class="alert-box error-alert">
+                        <div class="alert-message">{{ message }}</div>
+                        <button type="button" class="close-btn" onclick="this.parentElement.parentElement.style.display='none';">&times;</button>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        {% endif %}
+
     <div class="login-container">
+
         <!-- Form Section -->
         <div class="login-form">
             <h2>Sign In</h2>

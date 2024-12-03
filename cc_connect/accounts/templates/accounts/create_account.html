@@ -15,26 +15,57 @@
             <form method="POST" action="{% url 'create_account' %}">
                 {% csrf_token %}
                 
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" placeholder="Username" required>
-                
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Password" required>
-                
-                <label for="country">Country</label>
-                <div class="flag-selector">
-                    <select id="country" name="country" required>
-                        <option value="">Select your country</option>
-                        <option value="Mexico" data-icon="{% static 'images/mexico-flag.png' %}">🇲🇽 Mexico</option>
-                        <option value="Brazil" data-icon="{% static 'images/brazil-flag.png' %}">🇧🇷 Brazil</option>
-                        <option value="United States" data-icon="{% static 'images/us-flag.png' %}">🇺🇸 United States</option>
-                    </select>
+                {% if messages %}
+                    {% for message in messages %}
+                        {% if message.tags == 'success' %}
+                            <div class="alert-box success-alert" id="successAlert">
+                                <button type="button" class="close-btn" onclick="this.parentElement.style.display='none';">&times;</button>
+                                <div class="alert-message">{{ message }}</div>
+                            </div>
+                        {% else %}
+                            <div class="error-message">{{ message }}</div>
+                            <br><br>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            
+                <div class="form-group">
+                    <label for="id_username">Username</label>
+                    {{ form.username }}
+                    <div class="error-message">
+                        {{ form.username.errors }}
+                    </div>
                 </div>
-                
+            
+                <div class="form-group">
+                    <label for="id_password1">Password</label>
+                    {{ form.password1 }}
+                    <div class="error-message">
+                        {{ form.password1.errors }}
+                    </div>
+                </div>
+            
+                <div class="form-group">
+                    <label for="id_password2">Confirm Password</label>
+                    {{ form.password2 }}
+                    <div class="error-message">
+                        {{ form.password2.errors }}
+                    </div>
+                </div>
+            
+                <div class="form-group">
+                    <label for="id_country_of_origin">Country of Origin</label>
+                    {{ form.country_of_origin }}
+                    <div class="error-message">
+                        {{ form.country_of_origin.errors }}
+                    </div>
+                </div>
+            
                 <div class="actions">
-                    <button type="submit">Create Account</button>
+                    <button type="submit" class="submit-btn">Create Account</button>
                 </div>
             </form>
+            
         </div>
 
         <!-- Welcome Section -->
@@ -47,5 +78,21 @@
             <a href="{% url 'login' %}" class="sign-up-btn">Sign In</a>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            // Check if there's a success message
+            var successAlert = $('#successAlert');
+            if (successAlert.length) {
+                // Show the alert
+                successAlert.show();
+
+                // Delay redirecting to login page
+                setTimeout(function() {
+                    window.location.href = "{% url 'login' %}";
+                }, 3000); // 3 seconds delay to show the message
+            }
+        });
+    </script>
 </body>
 </html>

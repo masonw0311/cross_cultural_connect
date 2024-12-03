@@ -570,6 +570,33 @@ body {
     text-align: center;
 }
 
+.messages {
+    margin-top: 20px; 
+}
+
+.message {
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    color: white;
+    text-align: center;
+}
+
+.message.error {
+    background-color: #e74c3c; /* Red background for error */
+}
+
+.message.success {
+    background-color: #27ae60; /* Green background for success */
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
 /* General Alert Styles */
 .alert {
     padding: 15px;
@@ -592,3 +619,52 @@ body {
     color: #721c24;
     border: 1px solid #f5c6cb;
 }
+
+.fixed-alert-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.alert-box {
+    width: 80%;
+    max-width: 600px;
+    padding: 15px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.alert-box.error-alert {
+    background-color: #f44336; /* Red color for error messages */
+    color: white;
+}
+
+.alert-message {
+    flex: 1;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0 10px;
+}
+
+.close-btn:hover {
+    color: #ddd;
+}
+

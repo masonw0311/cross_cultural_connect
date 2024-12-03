@@ -1,12 +1,12 @@
 from django.contrib.auth import authenticate, logout, login as auth_login, update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
+
 from django.shortcuts import render, redirect
 from django.contrib import messages
+
 from .models import User
-from .forms import AccountUpdateForm, ProfileUpdateForm
-
-
+from .forms import AccountUpdateForm, ProfileUpdateForm, UserRegistrationForm
 
 from django.http import JsonResponse
 from google.cloud import translate_v2 as translate
@@ -18,6 +18,12 @@ def homepage(request):
     return render(request, 'accounts/homepage.html')
 
 def login(request):
+    show_success_message = request.session.get('show_success_message', False)
+    if show_success_message:
+        messages.success(request, 'Your account has been successfully created! You can now log in.')
+        # Clear the session flag
+        del request.session['show_success_message']
+
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -32,26 +38,19 @@ def login(request):
     return render(request, 'accounts/login.html')
 
 def create_account(request):
-
-    # TODO:
-    #       add account creation tips
-    #       add privacy policy
-    #       add encryption
-
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        country = request.POST['country']
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your account has been successfully created! You can now log in.')
+            request.session['show_success_message'] = True
+            return redirect('login')
+        else:
+            messages.error(request, 'Please correct the errors below.')
+    else:
+        form = UserRegistrationForm()
 
-        if User.objects.filter(username=username).exists():
-            messages.error(request, 'Username already exists')
-            return redirect('create_account')
-
-        user = User.objects.create_user(username=username, password=password, country_of_origin=country)
-        user.save()
-        messages.success(request, 'Account created successfully')
-        return redirect('login')
-    return render(request, 'accounts/create_account.html')
+    return render(request, 'accounts/create_account.html', {'form': form})
 
 #zip code functs
 
