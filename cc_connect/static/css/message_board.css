@@ -1,4 +1,18 @@
 /* Body Styling */
+body{
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+}
+}
 .message-board-body {
     margin: 0;
     padding: 0;
@@ -6,68 +20,21 @@
     font-family: Arial, sans-serif;
     background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9);
     color: #333;
+    animation: fadeIn 1.5s ease-in-out;
 }
 
-/* Navigation Bar */
-.message-board-nav {
-    background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9);
-    padding: 15px 30px;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
 }
 
-.nav-left {
-    display: flex;
-    align-items: center;
 }
 
-.nav-logo {
-    width: 40px;
-    height: 40px;
-    margin-right: 10px;
-}
-
-.nav-title {
-    font-size: 22px;
-    font-weight: bold;
-}
-
-.nav-links {
-    display: flex;
-    gap: 15px;
-}
-
-.nav-link {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 8px 15px;
-    border-radius: 5px;
-}
-
-.nav-link.active {
-    background-color: rgba(255, 255, 255, 0.2);
-}
-
-.nav-profile {
-    width: 40px;
-    height: 40px;
-    background-color: #fff;
-    color: #f64f59;
-    font-weight: bold;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 /* Main Container */
 .message-board-container {
@@ -79,6 +46,18 @@
     width: 100%;
     margin: 100px auto; /* Add space below the fixed navbar */
     text-align: center;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+}
 }
 
 /* Logo Section */
@@ -169,4 +148,12 @@ h1 {
     margin: 5px 0 0;
     font-size: 14px;
     color: #555;
+}
+body.fade-in {
+    opacity: 0;
+    transition: opacity 1s ease-in;
+}
+
+body.loaded {
+    opacity: 1;
 }

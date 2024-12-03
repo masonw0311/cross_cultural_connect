@@ -7,6 +7,7 @@ from .models import User
 from .forms import AccountUpdateForm, ProfileUpdateForm
 
 
+
 from django.http import JsonResponse
 from google.cloud import translate_v2 as translate
 import os
@@ -175,3 +176,4 @@ def account_management(request):
         'profile_form': profile_form,
         'password_form': password_form,
     })
+

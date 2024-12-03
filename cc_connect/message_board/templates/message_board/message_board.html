@@ -7,6 +7,16 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/message_board.css' %}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Fade-in effect */
+        body.fade-in {
+            opacity: 0;
+            transition: opacity 1s ease-in;
+        }
+        body.loaded {
+            opacity: 1;
+        }
+    </style
 </head>
 <body class="message-board-body">
 
@@ -83,6 +93,16 @@
         document.getElementById("profileModal").style.display = "none";
     }
 </script>
+<script>
+   
+    document.body.classList.add('fade-in');
+
+    
+    window.addEventListener('load', () => {
+        document.body.classList.add('loaded');
+    });
+</script>
+
 </body>
 </html>
 
