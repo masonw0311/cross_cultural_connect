@@ -63,7 +63,7 @@ def account_home(request):
 
     return render(request, 'accounts/account_home.html')
 
-
+@login_required
 def process_zip(request):
     if request.method == 'POST':
         zip_code = request.POST.get('zipcode', '').strip()
@@ -78,9 +78,11 @@ def process_zip(request):
 
     return render(request, 'account_home.html')
 
+@login_required
 def welcome_view(request):
     return render(request, 'accounts/overview.html', {'user': request.user})
 
+@login_required
 def overview_view(request):
     return render(request, 'accounts/overview.html')
 

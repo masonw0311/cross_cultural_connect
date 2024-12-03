@@ -25,8 +25,6 @@ Edward
 
 - footer in each page
 
-- login required
-
 - add privacy policy in account creation page
     - Discuss our privacy and security policy
 

@@ -7,12 +7,12 @@ from .models import Business
 from .forms import BusinessSearchForm
 import json
 
-
+@login_required
 def business_home(request):
     businesses = Business.objects.all()  # Fetch all businesses from the database
     return render(request, 'businesses/home.html', {'businesses': businesses})
 
-
+@login_required
 def map(request):
     businesses = Business.objects.values(
         'name',
@@ -66,7 +66,7 @@ def search(request):
 
     return render(request, 'businesses/search.html')
 
-
+@login_required
 def search_businesses(request):
     query = request.GET.get('query', '')  # Retrieve the query parameter
     businesses = Business.objects.all()
