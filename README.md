@@ -15,12 +15,3 @@ Mason
 
 
 Edward 
-
-- account settings page
-    - test username change
-    - test account deletion
-
-- footer in each page
-
-
-
