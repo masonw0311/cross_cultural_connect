@@ -1,0 +1,28 @@
+Scheduling post deletion after 14 days
+
+Using cron to schedule, delete_old_posts to execute
+
+1. find python path:
+$ which python
+
+2. find path to project home dir (where manage.py is located)
+$ pwd
+
+3. Enter crontab editor
+$ crontab -e
+
+4. Type the following command: (paths found in steps 2 and 3 above)
+- 0 0 * * * /path/to/python /path/to/manage.py delete_old_posts
+
+5. verify cron
+$ crontab -l
+
+If done correctly, the step 5 command will echo the cron job entered in step 4
+
+Components of cron job:
+<minute> <hour> <day_of_month> <month> <day_of_week> <path to python> <path to manage.py> <script to execute>
+
+Time entries denote when the script will execute. * means "every"
+
+So our command above executes delete_old_posts.py 
+at 00:00 (midnight) every day of the month, every month, every day of the week
