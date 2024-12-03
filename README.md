@@ -20,12 +20,10 @@ Edward
     - test username change
     - test account deletion
  
-- account confirmation / username taken
 
 - remove search -> search results only
 
 - footer in each page
-    - fake socials?
 
 - login required
 
