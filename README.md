@@ -19,13 +19,8 @@ Edward
 - account settings page
     - test username change
     - test account deletion
- 
-
-- remove search -> search results only
 
 - footer in each page
 
-- add privacy policy in account creation page
-    - Discuss our privacy and security policy
 
 

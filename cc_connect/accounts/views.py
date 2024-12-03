@@ -178,3 +178,5 @@ def account_management(request):
         'password_form': password_form,
     })
 
+def privacy_policy(request):
+    return render(request, 'accounts/privacy_policy.html')

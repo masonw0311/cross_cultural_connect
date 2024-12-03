@@ -11,5 +11,6 @@ urlpatterns = [
     path("translate/", views.translate_text, name="translate"),
     path('account_home/', views.account_home, name='account_home'),
     path('delete_account/', views.delete_account, name='delete_account'),
-    path('account_management/', views.account_management, name='account_management')
+    path('account_management/', views.account_management, name='account_management'),
+    path('privacy-policy/', views.privacy_policy, name='privacy_policy'),
 ]
