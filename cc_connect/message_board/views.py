@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Message
-
+#----------------------------------------------------------------
 @login_required
 def message_board(request):
     if request.method == "POST":

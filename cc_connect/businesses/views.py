@@ -11,27 +11,31 @@ import json
 def business_home(request):
     businesses = Business.objects.all()  # Fetch all businesses from the database
     return render(request, 'businesses/home.html', {'businesses': businesses})
-
+#--------------------------------------------------------------------------------
 @login_required
 def map(request):
+    # Query the Business model to retrieve selected fields for all businesses
     businesses = Business.objects.values(
-        'name',
-        'business_type',
-        'country',
-        'address',
-        'latitude',
-        'longitude',
-        'phone_number',
-        'website',
-        'image_url'
+        'name',          
+        'business_type', 
+        'country',      
+        'address',      
+        'latitude', 
+        'longitude',    
+        'phone_number',  
+        'website',      
+        'image_url'     
     )
+    
+    # Convert the list of business objects to a JSON string for use in the frontend
     businesses_json = json.dumps(list(businesses), cls=DjangoJSONEncoder)
     
+    # Render the 'map.html' template and pass the JSON-encoded business data
     return render(request, 'businesses/map.html', {
-        'businesses': businesses_json,
+        'businesses': businesses_json, # Pass the businesses data as JSON 
     })
 
-
+#--------------------------------------------------------------------------------
 
 # @login_required
 # def search(request):
@@ -65,7 +69,7 @@ def map(request):
 #         })
 
 #     return render(request, 'businesses/search.html')
-
+#--------------------------------------------------------------------------------
 @login_required
 def search_businesses(request):
     query = request.GET.get('query', '')  # Retrieve the query parameter
