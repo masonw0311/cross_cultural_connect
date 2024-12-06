@@ -78,8 +78,7 @@
 
     <script>
         function initMap() {
-            // Default map center
-            const defaultPosition = { lat: 28.537988, lng: -81.37874 };
+            // Initialize the map and set the zoom level and default center     
             const map = new google.maps.Map(document.getElementById("map"), {
                 zoom: 9,
                 center: defaultPosition,
@@ -94,12 +93,13 @@
             // Add markers for each business
             businesses.forEach(business => {
                 if (business.latitude && business.longitude) {
+                    // Create a marker for the business and add it to the map
                     const marker = new google.maps.Marker({
                         position: { lat: business.latitude, lng: business.longitude },
                         map: map,
                         title: business.name,
                     });
-
+                    // Add a click event listener to the marker to display business info
                     marker.addListener("click", () => {
                         infoWindow.setContent(`
                             <div>

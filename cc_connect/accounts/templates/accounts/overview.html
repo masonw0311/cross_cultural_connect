@@ -88,7 +88,7 @@
     </div>
 
     <!-- JavaScript -->
-    <script>
+    <script>//modal for the accounts page
         function openProfileModal() {
             document.getElementById("profileModal").style.display = "flex";
         }
@@ -98,48 +98,53 @@
         }
     </script>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            document.getElementById("translate-button").addEventListener("click", function () {
-                const inputText = document.getElementById("text-input").value.trim(); // Trim whitespace
-                const selectedLanguage = document.getElementById("language-select").value; // Get the selected language
+       // Wait for the DOM to fully load before executing the script
+document.addEventListener("DOMContentLoaded", function () {
+    // Add a click event listener to the translate button
+    document.getElementById("translate-button").addEventListener("click", function () {
+        const inputText = document.getElementById("text-input").value.trim(); // Get and trim the input text
+        const selectedLanguage = document.getElementById("language-select").value; // Get the selected target language
         
-                // Handle empty input
-                if (!inputText) {
-                    document.getElementById("text-output").value = "Please enter text to translate.";
-                    return;
-                }
-        
-                // Call Google Translate API
-                const apiKey = "AIzaSyDONSPaNs1RVDJlgl1Oj6_pWMYnrYc1OB4"; 
-                const apiUrl = `https://translation.googleapis.com/language/translate/v2?key=${apiKey}`;
-        
-                fetch(apiUrl, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        q: inputText,
-                        target: selectedLanguage,
-                    }),
-                })
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error("Error with the translation request");
-                    }
-                    return response.json();
-                })
-                .then((data) => {
-                    const translatedText = data.data.translations[0].translatedText;
-                    document.getElementById("text-output").value = translatedText;
-                })
-                .catch((error) => {
-                    console.error("Translation Error:", error);
-                    document.getElementById("text-output").value = "An error occurred. Please try again.";
-                });
-            });
+        // Check if input is empty, and display a message if true
+        if (!inputText) {
+            document.getElementById("text-output").value = "Please enter text to translate.";
+            return; // Stop execution if no text is entered
+        }
+
+        // Define the Google Translate API key and endpoint URL
+        const apiKey = "AIzaSyDONSPaNs1RVDJlgl1Oj6_pWMYnrYc1OB4"; 
+        const apiUrl = `https://translation.googleapis.com/language/translate/v2?key=${apiKey}`;
+
+        // Make a POST request to the Google Translate API
+        fetch(apiUrl, {
+            method: "POST", // HTTP method
+            headers: {
+                "Content-Type": "application/json", // Specify JSON content type
+            },
+            body: JSON.stringify({ 
+                q: inputText, // Text to translate
+                target: selectedLanguage, // Target language
+            }),
+        })
+        .then((response) => {
+            // Check if the response is successful
+            if (!response.ok) {
+                throw new Error("Error with the translation request"); // Throw error if response is not OK
+            }
+            return response.json(); // Parse the response JSON
+        })
+        .then((data) => {
+            // Extract the translated text from the API response
+            const translatedText = data.data.translations[0].translatedText;
+            document.getElementById("text-output").value = translatedText; // Display the translated text
+        })
+        .catch((error) => {
+            // Log the error and display a user-friendly message
+            console.error("Translation Error:", error);
+            document.getElementById("text-output").value = "An error occurred. Please try again.";
         });
-        
+    });
+}); 
         
     </script>
     {% include 'shared/footer.html' %}
