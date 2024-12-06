@@ -154,7 +154,7 @@ def delete_account(request):
         messages.success(request, "Your account has been successfully deleted.")
         return redirect('login')  # Redirect to the login page after deletion
     return render(request, 'delete_account.html')  # Renders a confirmation pag
-
+#--------------------------------------------------------------------------------
 @login_required
 def account_management(request):
     if request.method == "POST":
